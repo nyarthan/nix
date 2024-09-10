@@ -8,7 +8,7 @@
     pkgs.neovim
     pkgs.diskonaut
   ];
-  imports = [../common/users/jannismorgenstern];
+  imports = [../common/users/jannis];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
