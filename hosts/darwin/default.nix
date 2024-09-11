@@ -51,6 +51,7 @@
       "obsidian"
       "onyx"
       "raycast"
+      "vmware-fusion"
     ];
     masApps = {
       AusweisApp = 948660805;
