@@ -22,11 +22,13 @@
     alejandra,
   }: let
     inherit (self) outputs;
+    inherit (nixpkgs) lib;
     forAllSystems = nixpkgs.lib.getAttrs [
       "aarch64-darwin"
     ];
 
-    specialArgs = {inherit inputs outputs;};
+    configLib = import ./lib {inherit lib;};
+    specialArgs = {inherit inputs outputs configLib;};
   in {
     overlays = import ./overlays {
       inherit inputs outputs;
