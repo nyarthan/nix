@@ -21,11 +21,20 @@
     home-manager,
     alejandra,
   }: let
+    inherit (self) outputs;
     forAllSystems = nixpkgs.lib.getAttrs [
       "aarch64-darwin"
     ];
+
+    specialArgs = {inherit inputs outputs;};
   in {
+    overlays = import ./overlays {
+      inherit inputs outputs;
+      pkgs = nixpkgs;
+    };
+
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      inherit specialArgs;
       modules = [
         {
           environment.systemPackages = [alejandra.defaultPackage.aarch64-darwin];
@@ -35,10 +44,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
+          home-manager.extraSpecialArgs = specialArgs;
         }
       ];
-      specialArgs = {inherit inputs;};
     };
 
     # Expose the package set, including overlays, for convenience.

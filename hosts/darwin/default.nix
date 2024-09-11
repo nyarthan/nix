@@ -8,7 +8,10 @@
     pkgs.neovim
     pkgs.diskonaut
   ];
-  imports = [../common/users/jannis];
+  imports = [
+    ../common/users/jannis
+    ../common/core
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -34,9 +37,26 @@
 
   homebrew = {
     enable = true;
+    caskArgs.no_quarantine = true;
     casks = [
       "steam"
+      "protonvpn"
+      "keymapp"
+      "bitwarden"
+      "affinity-photo"
+      "affinity-designer"
+      "affinity-publisher"
+      "chatgpt"
+      "figma"
+      "obsidian"
+      "onyx"
+      "raycast"
     ];
+    masApps = {
+      AusweisApp = 948660805;
+      Word = 462054704;
+      Excel = 462058435;
+    };
   };
 
   system.defaults = {
