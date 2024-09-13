@@ -5,8 +5,6 @@
 }: {
   environment.systemPackages = [
     pkgs.vim
-    pkgs.neovim
-    pkgs.diskonaut
   ];
   imports = [
     ../common/core
@@ -52,6 +50,8 @@
       "obsidian"
       "onyx"
       "vmware-fusion"
+      "pearcleaner"
+      "app-cleaner"
     ];
     masApps = {
       AusweisApp = 948660805;

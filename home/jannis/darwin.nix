@@ -43,5 +43,7 @@
     pkgs.docker
     pkgs.colima
     pkgs.raycast
+    pkgs.neovim
+    pkgs.diskonaut
   ];
 }
