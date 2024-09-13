@@ -9,8 +9,8 @@
     pkgs.diskonaut
   ];
   imports = [
-    ../common/users/jannis
     ../common/core
+    ../common/users/jannis
   ];
 
   # Auto upgrade nix package and the daemon service.
@@ -37,6 +37,7 @@
 
   homebrew = {
     enable = true;
+    onActivation.cleanup = "zap";
     caskArgs.no_quarantine = true;
     casks = [
       "steam"
@@ -50,7 +51,6 @@
       "figma"
       "obsidian"
       "onyx"
-      "raycast"
       "vmware-fusion"
     ];
     masApps = {

@@ -42,5 +42,6 @@
     pkgs.ripgrep
     pkgs.docker
     pkgs.colima
+    pkgs.raycast
   ];
 }
