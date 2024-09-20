@@ -81,6 +81,25 @@
         "type": "github"
       }
     },
+    "neovim": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dirtyRev": "c8aba0647106fe25cca980280aa15809c709d491-dirty",
+        "dirtyShortRev": "c8aba06-dirty",
+        "lastModified": 1726783248,
+        "narHash": "sha256-57BpwHvJD4/OfVzpVRvyDh2j4FxwdKV+SF+h0vfE39E=",
+        "type": "git",
+        "url": "file:///Users/jannis/.config/neovim"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///Users/jannis/.config/neovim"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -121,6 +140,7 @@
       "inputs": {
         "alejandra": "alejandra",
         "home-manager": "home-manager",
+        "neovim": "neovim",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"
       }

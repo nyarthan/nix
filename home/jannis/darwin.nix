@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, neovim, ...}: {
   home = {
     username = "jannis";
     homeDirectory = "/Users/jannis";
@@ -43,7 +43,20 @@
     pkgs.docker
     pkgs.colima
     pkgs.raycast
-    pkgs.neovim
     pkgs.diskonaut
+    pkgs.cargo
+    pkgs.rustc
+    pkgs.nixd
+    pkgs.statix
+    pkgs.stylua
+    pkgs.nodejs_20
+    pkgs.pnpm
+    pkgs.nodePackages.prettier
+    pkgs.closurecompiler
+    pkgs.yazi
+    pkgs.efm-langserver
+    pkgs.starship
+    pkgs.vscode
+    neovim.packages.aarch64-darwin.default
   ];
 }

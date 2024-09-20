@@ -21,12 +21,8 @@
   programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;
 
-  # Set Git commit hash for darwin-version.
-  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
-
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 4;
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -52,6 +48,7 @@
       "vmware-fusion"
       "pearcleaner"
       "app-cleaner"
+      "whatsapp@beta"
     ];
     masApps = {
       AusweisApp = 948660805;
@@ -60,28 +57,39 @@
     };
   };
 
-  system.defaults = {
-    dock.autohide = true;
-    LaunchServices.LSQuarantine = false;
-    NSGlobalDomain.AppleFontSmoothing = 2;
-    NSGlobalDomain.AppleShowAllExtensions = true;
-    NSGlobalDomain.AppleShowAllFiles = true;
-    NSGlobalDomain.InitialKeyRepeat = 15;
-    NSGlobalDomain.KeyRepeat = 2;
-    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
-    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
-    NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
-    NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
-    NSGlobalDomain."com.apple.keyboard.fnState" = true;
-    NSGlobalDomain."com.apple.swipescrolldirection" = true;
-    dock.dashboard-in-overlay = true;
-    dock.mru-spaces = true;
-    dock.showhidden = true;
-    finder.AppleShowAllFiles = true;
-    finder.FXEnableExtensionChangeWarning = false;
-    finder.QuitMenuItem = true;
-    finder.ShowPathbar = true;
-    finder.ShowStatusBar = true;
-    screencapture.location = "~/Pictures/screenshots";
+  system = {
+    configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+    stateVersion = 4;
+
+    defaults = {
+      dock = {
+        autohide = true;
+        dashboard-in-overlay = true;
+        mru-spaces = true;
+        showhidden = true;
+      };
+      LaunchServices.LSQuarantine = false;
+      NSGlobalDomain = {
+        AppleFontSmoothing = 2;
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        InitialKeyRepeat = 15;
+        KeyRepeat = 2;
+        NSNavPanelExpandedStateForSaveMode = true;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+        PMPrintingExpandedStateForPrint = true;
+        PMPrintingExpandedStateForPrint2 = true;
+        "com.apple.keyboard.fnState" = true;
+        "com.apple.swipescrolldirection" = true;
+      };
+      finder = {
+        AppleShowAllFiles = true;
+        FXEnableExtensionChangeWarning = false;
+        QuitMenuItem = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+      };
+      screencapture.location = "~/Pictures/screenshots";
+    };
   };
 }

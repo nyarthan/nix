@@ -12,6 +12,9 @@
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
+    neovim.url = "/Users/jannis/.config/neovim";
+    neovim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -20,15 +23,13 @@
     nixpkgs,
     home-manager,
     alejandra,
+    neovim
   }: let
     inherit (self) outputs;
     inherit (nixpkgs) lib;
-    forAllSystems = nixpkgs.lib.getAttrs [
-      "aarch64-darwin"
-    ];
 
     configLib = import ./lib {inherit lib;};
-    specialArgs = {inherit inputs outputs configLib;};
+    specialArgs = {inherit inputs outputs configLib neovim;};
   in {
     overlays = import ./overlays {
       inherit inputs outputs;
