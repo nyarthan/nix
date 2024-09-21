@@ -10,9 +10,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
-
     neovim.url = "/Users/jannis/.config/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -22,7 +19,6 @@
     nix-darwin,
     nixpkgs,
     home-manager,
-    alejandra,
     neovim
   }: let
     inherit (self) outputs;
@@ -39,9 +35,6 @@
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
       inherit specialArgs;
       modules = [
-        {
-          environment.systemPackages = [alejandra.defaultPackage.aarch64-darwin];
-        }
         ./hosts/darwin
         home-manager.darwinModules.home-manager
         {

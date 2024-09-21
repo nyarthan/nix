@@ -58,5 +58,6 @@
     pkgs.starship
     pkgs.vscode
     neovim.packages.aarch64-darwin.default
+    pkgs.nixfmt-rfc-style
   ];
 }
