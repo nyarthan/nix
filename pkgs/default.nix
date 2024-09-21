@@ -1,3 +1,6 @@
-{pkgs ? import <nixpkgs> {}}: rec {
-  raycast = pkgs.callPackage ./raycast.nix {};
+{
+  pkgs ? import <nixpkgs> { },
+}:
+{
+  raycast = pkgs.callPackage ./raycast.nix { };
 }

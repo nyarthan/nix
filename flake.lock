@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1726876554,
-        "narHash": "sha256-cMHz2tKmGOfl/US3gSozd0LZeH0mp+B+ojqQ6cQmIuU=",
+        "lastModified": 1726922846,
+        "narHash": "sha256-FlvH1xWEsxcocGBOB99O2xLFlkPq2NX6NzuzEwbrtGw=",
         "ref": "refs/heads/master",
-        "rev": "3cc955231e958ff3f87a7941bfaa9ae89edebce1",
-        "revCount": 31,
+        "rev": "3b8ac17a67bdcea15c02cdc36bb1278f169e9868",
+        "revCount": 32,
         "type": "git",
         "url": "file:///Users/jannis/.config/neovim"
       },

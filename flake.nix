@@ -14,38 +14,45 @@
     neovim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {
-    self,
-    nix-darwin,
-    nixpkgs,
-    home-manager,
-    neovim
-  }: let
-    inherit (self) outputs;
-    inherit (nixpkgs) lib;
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nixpkgs,
+      home-manager,
+      neovim,
+    }:
+    let
+      inherit (self) outputs;
+      inherit (nixpkgs) lib;
 
-    configLib = import ./lib {inherit lib;};
-    specialArgs = {inherit inputs outputs configLib neovim;};
-  in {
-    overlays = import ./overlays {
-      inherit inputs outputs;
-      pkgs = nixpkgs;
+      configLib = import ./lib { inherit lib; };
+      specialArgs = {
+        inherit
+          inputs
+          outputs
+          configLib
+          neovim
+          ;
+      };
+    in
+    {
+      overlays = import ./overlays {
+        inherit inputs outputs;
+        pkgs = nixpkgs;
+      };
+
+      darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        inherit specialArgs;
+        modules = [
+          ./hosts/darwin
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+        ];
+      };
     };
-
-    darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      inherit specialArgs;
-      modules = [
-        ./hosts/darwin
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialArgs;
-        }
-      ];
-    };
-
-    # Expose the package set, including overlays, for convenience.
-    # darwinPackages = self.darwinConfigurations."MacBook-Pro".pkgs;
-  };
 }
