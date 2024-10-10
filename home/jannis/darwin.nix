@@ -1,4 +1,5 @@
-{pkgs, neovim, ...}: {
+{ pkgs, neovim, ... }:
+{
   home = {
     username = "jannis";
     homeDirectory = "/Users/jannis";
@@ -6,6 +7,9 @@
   };
 
   programs.fish.enable = true;
+  programs.fish.shellInit = ''
+    fish_add_path /opt/homebrew/Cellar/postgresql@16/16.4/bin
+  '';
   programs.fish.functions = {
     docker = {
       body = ''
@@ -27,10 +31,15 @@
   # '';
   programs.starship.enable = true;
   programs.starship.enableFishIntegration = true;
+  programs.direnv = {
+    enable = true;
+    # enableFishIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   home.packages = [
     pkgs.slack
-    pkgs.whatsapp-for-mac
+    # pkgs.whatsapp-for-mac
     pkgs.discord
     pkgs.teams
     pkgs.qbittorrent
@@ -42,10 +51,8 @@
     pkgs.ripgrep
     pkgs.docker
     pkgs.colima
-    pkgs.raycast
+    # pkgs.raycast
     pkgs.diskonaut
-    pkgs.cargo
-    pkgs.rustc
     pkgs.nixd
     pkgs.statix
     pkgs.stylua
@@ -59,5 +66,10 @@
     pkgs.vscode
     neovim.packages.aarch64-darwin.default
     pkgs.nixfmt-rfc-style
+    pkgs.luajit
+    pkgs.pkg-config
+    pkgs.net-news-wire
+    pkgs.nix-output-monitor
+    pkgs.wireshark
   ];
 }

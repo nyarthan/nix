@@ -10,6 +10,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     neovim.url = "/Users/jannis/.config/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,42 +19,55 @@
   outputs =
     inputs@{
       self,
-      nix-darwin,
+      flake-parts,
       nixpkgs,
+      nix-darwin,
       home-manager,
-      neovim,
+      ...
     }:
-    let
-      inherit (self) outputs;
-      inherit (nixpkgs) lib;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "aarch64-darwin" ];
 
-      configLib = import ./lib { inherit lib; };
-      specialArgs = {
-        inherit
-          inputs
-          outputs
-          configLib
-          neovim
-          ;
-      };
-    in
-    {
-      overlays = import ./overlays {
-        inherit inputs outputs;
-        pkgs = nixpkgs;
-      };
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-rfc-style;
+        };
 
-      darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        inherit specialArgs;
-        modules = [
-          ./hosts/darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-        ];
-      };
+      flake =
+        let
+          configLib = import ./lib { inherit (nixpkgs) lib; };
+          specialArgs = {
+            inherit
+              inputs
+              configLib
+              ;
+            inherit (inputs) neovim;
+            inherit (self) outputs;
+          };
+          pkgs = nixpkgs;
+        in
+        {
+
+          overlays = import ./overlays {
+            inherit inputs pkgs;
+            inherit (self) outputs;
+          };
+
+          darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+            inherit specialArgs;
+            modules = [
+              ./hosts/darwin
+              home-manager.darwinModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = specialArgs;
+                };
+              }
+            ];
+          };
+        };
     };
 }
