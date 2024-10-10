@@ -12,6 +12,16 @@
     ../common/users/jannis
   ];
 
+  sops = {
+    defaultSopsFile = ../../secrets.yaml;
+    validateSopsFiles = false;
+    age = {
+      sshKeyPaths = [ "/etc/ssh/id_host_ed25519" ];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;

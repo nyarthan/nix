@@ -14,6 +14,9 @@
 
     neovim.url = "/Users/jannis/.config/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.url = "/Users/jannis/dev/repos/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -23,6 +26,7 @@
       nixpkgs,
       nix-darwin,
       home-manager,
+      sops-nix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -31,6 +35,15 @@
       perSystem =
         { pkgs, ... }:
         {
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.sops
+              pkgs.age
+              pkgs.ssh-to-age
+              pkgs.mkpasswd
+            ];
+          };
+
           formatter = pkgs.nixfmt-rfc-style;
         };
 
@@ -58,6 +71,7 @@
             inherit specialArgs;
             modules = [
               ./hosts/darwin
+              sops-nix.darwinModules.sops
               home-manager.darwinModules.home-manager
               {
                 home-manager = {

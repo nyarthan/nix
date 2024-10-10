@@ -136,13 +136,50 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1728156290,
+        "narHash": "sha256-uogSvuAp+1BYtdu6UWuObjHqSbBohpyARXDWqgI12Ss=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "17ae88b569bb15590549ff478bab6494dde4a907",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "neovim": "neovim",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sops-nix": "sops-nix"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "dirtyRev": "06535d0e3d0201e6a8080dd32dbfde339b94f01b-dirty",
+        "dirtyShortRev": "06535d0-dirty",
+        "lastModified": 1728345710,
+        "narHash": "sha256-kV5w9/eD0l7Snmsr9QaSrOnxa4/7z+bNeoq/tKWomz4=",
+        "type": "git",
+        "url": "file:///Users/jannis/dev/repos/sops-nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///Users/jannis/dev/repos/sops-nix"
       }
     }
   },
