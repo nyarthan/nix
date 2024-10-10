@@ -1,11 +1,7 @@
 {
-  inputs,
   pkgs,
   ...
 }:
-let
-  inherit (pkgs) lib;
-in
 {
   additions = final: _prev: import ../pkgs { pkgs = final; };
 

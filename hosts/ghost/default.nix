@@ -4,12 +4,13 @@
   ...
 }:
 {
-  environment.systemPackages = [
-    pkgs.vim
-  ];
   imports = [
     ../common/core
     ../common/users/jannis
+  ];
+
+  environment.systemPackages = [
+    pkgs.vim
   ];
 
   sops = {

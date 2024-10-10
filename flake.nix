@@ -17,6 +17,9 @@
 
     sops-nix.url = "/Users/jannis/dev/repos/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    flake-root.url = "github:srid/flake-root";
   };
 
   outputs =
@@ -27,14 +30,23 @@
       nix-darwin,
       home-manager,
       sops-nix,
+      treefmt-nix,
+      flake-root,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        treefmt-nix.flakeModule
+        flake-root.flakeModule
+      ];
+
       systems = [ "aarch64-darwin" ];
 
       perSystem =
-        { pkgs, ... }:
+        { pkgs, config, ... }:
         {
+          treefmt.config = import ./treefmt.nix { inherit pkgs config; };
+
           devShells.default = pkgs.mkShell {
             packages = [
               pkgs.sops
@@ -44,12 +56,13 @@
             ];
           };
 
-          formatter = pkgs.nixfmt-rfc-style;
+          formatter = config.treefmt.build.wrapper;
         };
 
       flake =
         let
-          configLib = import ./lib { inherit (nixpkgs) lib; };
+          pkgs = nixpkgs;
+          configLib = import ./lib { inherit pkgs; };
           specialArgs = {
             inherit
               inputs
@@ -58,7 +71,6 @@
             inherit (inputs) neovim;
             inherit (self) outputs;
           };
-          pkgs = nixpkgs;
         in
         {
 
@@ -67,10 +79,10 @@
             inherit (self) outputs;
           };
 
-          darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
+          darwinConfigurations.ghost = nix-darwin.lib.darwinSystem {
             inherit specialArgs;
             modules = [
-              ./hosts/darwin
+              ./hosts/ghost
               sops-nix.darwinModules.sops
               home-manager.darwinModules.home-manager
               {
