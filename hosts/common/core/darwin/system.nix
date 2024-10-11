@@ -1,6 +1,7 @@
 { ... }:
 {
   system = {
+    stateVersion = 5;
     checks = {
       verifyBuildUsers = true;
       verifyNixChannels = true;
