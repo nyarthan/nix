@@ -3,4 +3,5 @@
 }:
 {
   raycast = pkgs.callPackage ./raycast.nix { };
+  geist = pkgs.callPackage ./geist.nix { };
 }
