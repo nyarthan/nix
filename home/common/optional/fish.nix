@@ -18,7 +18,7 @@ in
         fish_add_path /opt/homebrew/Cellar/postgresql@16/16.4/bin
       '';
       functions = {
-        docker = {
+        docker = lib.mkIf config.custom.docker.enable {
           body = ''
             function start_docker_if_needed
               if not test -S ~/.colima/default/docker.sock

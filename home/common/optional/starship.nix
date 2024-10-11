@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -16,5 +17,7 @@ in
       enable = true;
       enableFishIntegration = lib.mkIf config.custom.fish.enable true;
     };
+
+    home.packages = [ pkgs.nodejs_20 ];
   };
 }
