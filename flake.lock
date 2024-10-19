@@ -76,14 +76,15 @@
         "flake-parts": "flake-parts_2",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1728670759,
-        "narHash": "sha256-bvJloBB1qd1DAcNG3yF4iOtjGMVho6/MTs9Lm7UV+js=",
+        "lastModified": 1728926125,
+        "narHash": "sha256-xzayUoSZ7zAL4oii01kuAxoRtuxYbxmFdlSXhHaF1pA=",
         "ref": "refs/heads/master",
-        "rev": "aecdbc7997178ae7369d3e309d53171c3388e6ce",
-        "revCount": 69,
+        "rev": "d9d4302d9cb9d9529035959eafe97e9916eae96a",
+        "revCount": 70,
         "type": "git",
         "url": "file:///Users/jannis/.config/neovim"
       },
@@ -154,6 +155,22 @@
     },
     "nixpkgs-stable": {
       "locked": {
+        "lastModified": 1728740863,
+        "narHash": "sha256-u+rxA79a0lyhG+u+oPBRtTDtzz8kvkc9a6SWSt9ekVc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a3f9ad65a0bf298ed5847629a57808b97e6e8077",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable_2": {
+      "locked": {
         "lastModified": 1728156290,
         "narHash": "sha256-uogSvuAp+1BYtdu6UWuObjHqSbBohpyARXDWqgI12Ss=",
         "owner": "NixOS",
@@ -201,7 +218,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
         "dirtyRev": "06535d0e3d0201e6a8080dd32dbfde339b94f01b-dirty",

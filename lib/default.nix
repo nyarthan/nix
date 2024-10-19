@@ -13,4 +13,13 @@ in
       "/Users"
     else
       throw "Unsupported System";
+
+  mkCustomModule =
+    attrPath: inputs: moduleFn:
+    let
+      cfg = lib.attrsets.getAttrFromPath attrPath inputs.config.custom;
+      module = moduleFn (inputs // { inherit cfg options; });
+      options = lib.attrsets.setAttrByPath ([ "custom" ] ++ attrPath) module.options;
+    in
+    module // { inherit options; };
 }

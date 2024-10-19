@@ -62,11 +62,11 @@
       flake =
         let
           pkgs = nixpkgs;
-          configLib = import ./lib { inherit pkgs; };
+          lib' = import ./lib { inherit pkgs; };
           specialArgs = {
             inherit
               inputs
-              configLib
+              lib'
               ;
             inherit (inputs) neovim;
             inherit (self) outputs;
