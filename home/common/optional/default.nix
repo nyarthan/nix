@@ -5,6 +5,7 @@
     ./starship.nix
     ./direnv.nix
     ./docker.nix
+    ./podman.nix
     ./social.nix
   ];
 }

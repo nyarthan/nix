@@ -16,7 +16,8 @@ in
       fish.enable = true;
       starship.enable = true;
       direnv.enable = true;
-      docker.enable = true;
+      docker.enable = false;
+      podman.enable = true;
     };
   };
 }
