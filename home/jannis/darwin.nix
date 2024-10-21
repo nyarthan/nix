@@ -3,9 +3,11 @@
   imports = [
     ../common/optional
     ../common/bundles/dev.nix
+    ../common/bundles/desktop.nix
   ];
 
   custom.bundle.dev.enable = true;
+  custom.bundle.desktop.enable = true;
   custom.social.enable = true;
 
   home = {

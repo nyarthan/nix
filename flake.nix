@@ -15,8 +15,8 @@
     neovim.url = "/Users/jannis/.config/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix.url = "/Users/jannis/dev/repos/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # sops-nix.url = "/Users/jannis/dev/repos/sops-nix";
+    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-root.url = "github:srid/flake-root";
@@ -29,7 +29,7 @@
       nixpkgs,
       nix-darwin,
       home-manager,
-      sops-nix,
+      # sops-nix,
       treefmt-nix,
       flake-root,
       ...
@@ -49,7 +49,7 @@
 
           devShells.default = pkgs.mkShell {
             packages = [
-              pkgs.sops
+              # pkgs.sops
               pkgs.age
               pkgs.ssh-to-age
               pkgs.mkpasswd
@@ -83,7 +83,7 @@
             inherit specialArgs;
             modules = [
               ./hosts/ghost
-              sops-nix.darwinModules.sops
+              # sops-nix.darwinModules.sops
               home-manager.darwinModules.home-manager
               {
                 home-manager = {

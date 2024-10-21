@@ -7,5 +7,6 @@
     ./docker.nix
     ./podman.nix
     ./social.nix
+    ./aerospace.nix
   ];
 }
