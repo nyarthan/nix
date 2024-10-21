@@ -34,6 +34,8 @@
       "obsidian"
       "steam"
       "zen-browser"
+      "vlc"
+      "libreoffice"
     ];
 
     masApps = {
