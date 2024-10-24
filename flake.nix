@@ -20,6 +20,9 @@
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-root.url = "github:srid/flake-root";
+
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+    nixpkgs-firefox-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -32,6 +35,7 @@
       # sops-nix,
       treefmt-nix,
       flake-root,
+      nixpkgs-firefox-darwin,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -74,10 +78,14 @@
         in
         {
 
-          overlays = import ./overlays {
-            inherit inputs pkgs;
-            inherit (self) outputs;
-          };
+          overlays =
+            import ./overlays {
+              inherit inputs pkgs;
+              inherit (self) outputs;
+            }
+            // {
+              firefox = nixpkgs-firefox-darwin.overlay;
+            };
 
           darwinConfigurations.ghost = nix-darwin.lib.darwinSystem {
             inherit specialArgs;

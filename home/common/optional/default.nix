@@ -8,5 +8,6 @@
     ./podman.nix
     ./social.nix
     ./aerospace.nix
+    ./firefox.nix
   ];
 }

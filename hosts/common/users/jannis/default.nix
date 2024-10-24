@@ -7,4 +7,5 @@
   };
 
   home-manager.users.jannis = import (lib'.relativeToRoot "home/jannis/darwin.nix");
+  home-manager.backupFileExtension = "backup";
 }

@@ -9,6 +9,7 @@
   custom.bundle.dev.enable = true;
   custom.bundle.desktop.enable = true;
   custom.social.enable = true;
+  custom.firefox.enable = true;
 
   home = {
     username = "jannis";
@@ -24,6 +25,7 @@
     pkgs.lazygit
     pkgs.zellij
     pkgs.ripgrep
+    pkgs.vscode
     neovim.packages.aarch64-darwin.default
   ];
 }
