@@ -14,6 +14,7 @@ in
   config = lib.mkIf cfg.enable {
     custom = {
       fish.enable = true;
+      bash.enable = true;
       starship.enable = true;
       direnv.enable = true;
       docker.enable = false;

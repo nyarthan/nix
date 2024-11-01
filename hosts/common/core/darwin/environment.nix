@@ -6,5 +6,6 @@
       pkgs.vim
     ];
     darwinConfig = "/Users/jannis/nix/flake.nix";
+    shells = [ pkgs.bashInteractive ];
   };
 }

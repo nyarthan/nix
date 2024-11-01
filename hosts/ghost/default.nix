@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../common/core
@@ -16,8 +16,10 @@
   ];
 
   custom = {
-    bash.enable = true;
+    bash.enable = false;
   };
+
+  fonts.packages = [ pkgs.nerdfonts ];
 
   # sops = {
   #   defaultSopsFile = ../../secrets.yaml;

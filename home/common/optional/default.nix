@@ -2,6 +2,7 @@
 {
   imports = [
     ./fish.nix
+    ./bash.nix
     ./starship.nix
     ./direnv.nix
     ./docker.nix
