@@ -91,6 +91,36 @@ lib'.mkCustomModule [ "firefox" ] inputs (
                   icon = ../../../assets/youtube.svg;
                   definedAliases = [ "@yt" ];
                 };
+                "Docs.rs" = {
+                  urls = [
+                    {
+                      template = "https://docs.rs/releases/search";
+                      params = [
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
+                  icon = ../../../assets/cubes.svg;
+                  definedAliases = [ "@docsrs" ];
+                };
+                "crates.io" = {
+                  urls = [
+                    {
+                      template = "https://crates.io/search";
+                      params = [
+                        {
+                          name = "q";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
+                  icon = ../../../assets/cargo.png;
+                  definedAliases = [ "@crates" ];
+                };
               };
             };
           };
