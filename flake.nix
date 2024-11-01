@@ -91,6 +91,7 @@
             inherit specialArgs;
             modules = [
               ./hosts/ghost
+              ./modules/darwin/karabiner-driver.nix
               # sops-nix.darwinModules.sops
               home-manager.darwinModules.home-manager
               {

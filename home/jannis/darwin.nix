@@ -26,6 +26,7 @@
     pkgs.zellij
     pkgs.ripgrep
     pkgs.vscode
+    pkgs.karabiner-driver
     neovim.packages.aarch64-darwin.default
   ];
 }

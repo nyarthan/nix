@@ -17,6 +17,7 @@
 
   custom = {
     bash.enable = false;
+    karabiner-driver.enable = true;
   };
 
   fonts.packages = [ pkgs.nerdfonts ];
