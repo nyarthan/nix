@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -12,14 +13,21 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-root.url = "github:srid/flake-root";
+
     neovim.url = "/Users/jannis/.config/neovim";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
+    neovim.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    neovim.inputs.treefmt-nix.follows = "treefmt-nix";
+    neovim.inputs.flake-parts.follows = "flake-parts";
+    neovim.inputs.flake-root.follows = "flake-root";
 
-    # sops-nix.url = "/Users/jannis/dev/repos/sops-nix";
-    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    flake-root.url = "github:srid/flake-root";
+    sops-nix.url = "github:nyarthan/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
 
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     nixpkgs-firefox-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +40,7 @@
       nixpkgs,
       nix-darwin,
       home-manager,
-      # sops-nix,
+      sops-nix,
       treefmt-nix,
       flake-root,
       nixpkgs-firefox-darwin,
@@ -53,7 +61,7 @@
 
           devShells.default = pkgs.mkShell {
             packages = [
-              # pkgs.sops
+              pkgs.sops
               pkgs.age
               pkgs.ssh-to-age
               pkgs.mkpasswd
@@ -92,7 +100,7 @@
             modules = [
               ./hosts/ghost
               ./modules/darwin/karabiner-driver.nix
-              # sops-nix.darwinModules.sops
+              sops-nix.darwinModules.sops
               home-manager.darwinModules.home-manager
               {
                 home-manager = {
