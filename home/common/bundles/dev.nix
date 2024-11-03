@@ -19,6 +19,7 @@ in
       direnv.enable = true;
       docker.enable = false;
       podman.enable = true;
+      gh.enable = true;
     };
   };
 }

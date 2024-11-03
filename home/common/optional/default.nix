@@ -10,5 +10,6 @@
     ./social.nix
     ./aerospace.nix
     ./firefox.nix
+    ./gh.nix
   ];
 }
