@@ -22,14 +22,14 @@
 
   fonts.packages = [ pkgs.nerdfonts ];
 
-  sops = {
-    secrets.jannis-password = { };
-    defaultSopsFile = ../../secrets.yaml;
-    validateSopsFiles = false;
-    age = {
-      sshKeyPaths = [ "/etc/ssh/id_host_ed25519" ];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
-    };
-  };
+  # sops = {
+  #   secrets.jannis-password = { };
+  #   defaultSopsFile = ../../secrets.yaml;
+  #   validateSopsFiles = false;
+  #   age = {
+  #     sshKeyPaths = [ "/etc/ssh/id_host_ed25519" ];
+  #     keyFile = "/var/lib/sops-nix/key.txt";
+  #     generateKey = true;
+  #   };
+  # };
 }
