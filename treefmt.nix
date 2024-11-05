@@ -26,7 +26,7 @@
         options = [
           "--unstable"
           "--fmt"
-          # "--check"
+          "--check"
           "--justfile"
         ];
         includes = [ "justfile" ];
