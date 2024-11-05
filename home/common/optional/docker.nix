@@ -1,6 +1,9 @@
 # why do I need to define `pkgs` here? for some reason it's not included otherwise???????
+let
+  name = "docker";
+in
 { lib', pkgs, ... }@inputs:
-lib'.mkCustomModule [ "docker" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
@@ -8,7 +11,7 @@ lib'.mkCustomModule [ "docker" ] inputs (
   }:
   {
     options = {
-      enable = lib.mkEnableOption "Enables docker";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

@@ -1,42 +1,44 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
 let
-  cfg = config.custom.bash;
+  name = "bash";
 in
-{
-  options.custom.bash = {
-    enable = lib.mkEnableOption "Enables bash";
-  };
+{ lib', pkgs, ... }@inputs:
+lib'.mkCustomModule [ name ] inputs (
+  {
+    lib,
+    cfg,
+    ...
+  }:
+  {
+    options = {
+      enable = lib.mkEnableOption "bash";
+    };
 
-  config = {
-    home.packages = [
-      pkgs.blesh
-    ];
-
-    programs.bash = lib.mkIf cfg.enable {
-      enable = true;
-      enableCompletion = true;
-      initExtra = ''
-        # source ${pkgs.blesh}/share/blesh/ble.sh --rcfile "$HOME/.blerc"
-        # [[ ! ''${BLE_VERSION-} ]] || ble-attach
-        export PS1='$(starship prompt)'
-      '';
-      historyFile = "$HOME/.bash_history";
-      historyIgnore = [
-        "ls"
-        "cd"
-        "exit"
-        "clear"
+    config = lib.mkIf cfg.enable {
+      home.packages = [
+        pkgs.blesh
       ];
-      shellAliases = {
-        ll = "ls -l";
-        la = "ls -la";
-        ".." = "cd ..";
+
+      programs.bash = {
+        enable = true;
+        enableCompletion = true;
+        initExtra = ''
+          # source ${pkgs.blesh}/share/blesh/ble.sh --rcfile "$HOME/.blerc"
+          # [[ ! ''${BLE_VERSION-} ]] || ble-attach
+          export PS1='$(starship prompt)'
+        '';
+        historyFile = "$HOME/.bash_history";
+        historyIgnore = [
+          "ls"
+          "cd"
+          "exit"
+          "clear"
+        ];
+        shellAliases = {
+          ll = "ls -l";
+          la = "ls -la";
+          ".." = "cd ..";
+        };
       };
     };
-  };
-}
+  }
+)

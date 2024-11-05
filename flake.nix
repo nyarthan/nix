@@ -25,9 +25,9 @@
     neovim.inputs.flake-parts.follows = "flake-parts";
     neovim.inputs.flake-root.follows = "flake-root";
 
-    sops-nix.url = "github:nyarthan/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    # sops-nix.url = "github:nyarthan/sops-nix";
+    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
 
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
     nixpkgs-firefox-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +40,7 @@
       nixpkgs,
       nix-darwin,
       home-manager,
-      sops-nix,
+      # sops-nix,
       treefmt-nix,
       flake-root,
       nixpkgs-firefox-darwin,
@@ -61,7 +61,7 @@
 
           devShells.default = pkgs.mkShell {
             packages = [
-              pkgs.sops
+              # pkgs.sops
               pkgs.age
               pkgs.ssh-to-age
               pkgs.mkpasswd
@@ -100,7 +100,7 @@
             modules = [
               ./hosts/ghost
               ./modules/darwin/karabiner-driver.nix
-              sops-nix.darwinModules.sops
+              # sops-nix.darwinModules.sops
               home-manager.darwinModules.home-manager
               {
                 home-manager = {

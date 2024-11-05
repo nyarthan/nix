@@ -1,22 +1,21 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
 let
-  cfg = config.custom.social;
+  name = "social";
 in
-{
-  options.custom.social = {
-    enable = lib.mkEnableOption "Enables social stuff";
-  };
+{ lib', pkgs, ... }@inputs:
+lib'.mkCustomModule [ name ] inputs (
+  { cfg, lib, ... }:
+  {
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.slack
-      pkgs.discord
-      pkgs.teams
-    ];
-  };
-}
+    options = {
+      enable = lib.mkEnableOption name;
+    };
+
+    config = lib.mkIf cfg.enable {
+      home.packages = [
+        pkgs.slack
+        pkgs.discord
+        pkgs.teams
+      ];
+    };
+  }
+)

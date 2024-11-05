@@ -1,5 +1,8 @@
+let
+  name = "gh";
+in
 { lib', pkgs, ... }@inputs:
-lib'.mkCustomModule [ "gh" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
@@ -7,7 +10,7 @@ lib'.mkCustomModule [ "gh" ] inputs (
   }:
   {
     options = {
-      enable = lib.mkEnableOption "Enables GitHub CLI (gh)";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

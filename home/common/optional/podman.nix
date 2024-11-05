@@ -1,5 +1,8 @@
+let
+  name = "podman";
+in
 { lib', pkgs, ... }@inputs:
-lib'.mkCustomModule [ "podman" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
@@ -7,7 +10,7 @@ lib'.mkCustomModule [ "podman" ] inputs (
   }:
   {
     options = {
-      enable = lib.mkEnableOption "Enables podman";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

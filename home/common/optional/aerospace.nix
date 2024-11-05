@@ -1,5 +1,8 @@
+let
+  name = "aerospace";
+in
 { lib', pkgs, ... }@inputs:
-lib'.mkCustomModule [ "aerospace" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
@@ -7,7 +10,7 @@ lib'.mkCustomModule [ "aerospace" ] inputs (
   }:
   {
     options = {
-      enable = lib.mkEnableOption "enables aerospace window manager";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

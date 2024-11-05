@@ -179,31 +179,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
         "nixpkgs-stable": "nixpkgs-stable",
-        "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix"
-      }
-    },
-    "sops-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [
-          "nixpkgs-stable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1730605784,
-        "narHash": "sha256-1NveNAMLHbxOg0BpBMSVuZ2yW2PpDnZLbZ25wV50PMc=",
-        "owner": "nyarthan",
-        "repo": "sops-nix",
-        "rev": "e9b5eef9b51cdf966c76143e13a9476725b2f760",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nyarthan",
-        "repo": "sops-nix",
-        "type": "github"
       }
     },
     "treefmt-nix": {

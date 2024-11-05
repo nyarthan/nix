@@ -1,9 +1,12 @@
+let
+  name = "direnv";
+in
 inputs@{ lib', ... }:
-lib'.mkCustomModule [ "direnv" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   { lib, cfg, ... }:
   {
     options = {
-      enable = lib.mkEnableOption "Enables direnv";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

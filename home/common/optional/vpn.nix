@@ -1,5 +1,8 @@
+let
+  name = "vpn";
+in
 { lib', pkgs, ... }@inputs:
-lib'.mkCustomModule [ "vpn" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
@@ -7,7 +10,7 @@ lib'.mkCustomModule [ "vpn" ] inputs (
   }:
   {
     options = {
-      enable = lib.mkEnableOption "Enables VPN";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

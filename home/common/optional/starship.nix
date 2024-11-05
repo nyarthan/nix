@@ -1,24 +1,27 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
 let
-  cfg = config.custom.starship;
+  name = "starship";
 in
-{
-  options.custom.starship = {
-    enable = lib.mkEnableOption "Enables starship";
-  };
-
-  config = lib.mkIf cfg.enable {
-    programs.starship = {
-      enable = true;
-      enableFishIntegration = lib.mkIf config.custom.fish.enable true;
-      enableBashIntegration = lib.mkIf config.custom.bash.enable true;
+{ lib', pkgs, ... }@inputs:
+lib'.mkCustomModule [ name ] inputs (
+  {
+    cfg,
+    lib,
+    config,
+    ...
+  }:
+  {
+    options = {
+      enable = lib.mkEnableOption name;
     };
 
-    home.packages = [ pkgs.nodejs_20 ];
-  };
-}
+    config = lib.mkIf cfg.enable {
+      programs.starship = {
+        enable = true;
+        enableFishIntegration = lib.mkIf config.custom.fish.enable true;
+        enableBashIntegration = lib.mkIf config.custom.bash.enable true;
+      };
+
+      home.packages = [ pkgs.nodejs_20 ];
+    };
+  }
+)
