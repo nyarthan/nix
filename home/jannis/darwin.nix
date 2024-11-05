@@ -1,6 +1,7 @@
 { pkgs, neovim, ... }:
 {
   imports = [
+    ../common/core
     ../common/optional
     ../common/bundles/dev.nix
     ../common/bundles/desktop.nix

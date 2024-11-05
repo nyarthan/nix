@@ -22,4 +22,13 @@ in
       options = lib.attrsets.setAttrByPath ([ "custom" ] ++ attrPath) module.options;
     in
     module // { inherit options; };
+
+  mkDefaultEnableOption =
+    name:
+    lib.mkOption {
+      default = true;
+      example = true;
+      description = "Whether to enable ${name}.";
+      type = lib.types.bool;
+    };
 }
