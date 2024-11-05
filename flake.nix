@@ -38,7 +38,7 @@
     flake-root.url = "github:srid/flake-root";
 
     neovim = {
-      url = "/Users/jannis/.config/neovim";
+      url = "github:nyarthan/neovim";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs-stable";
