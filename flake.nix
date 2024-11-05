@@ -5,35 +5,62 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    globignore.url = "github:nyarthan/globignore";
-    globignore.inputs.nixpkgs.follows = "nixpkgs";
+    globignore = {
+      url = "github:nyarthan/globignore";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
+        flake-root.follows = "flake-root";
+      };
+    };
 
     flake-root.url = "github:srid/flake-root";
 
-    neovim.url = "/Users/jannis/.config/neovim";
-    neovim.inputs.nixpkgs.follows = "nixpkgs";
-    neovim.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    neovim.inputs.treefmt-nix.follows = "treefmt-nix";
-    neovim.inputs.flake-parts.follows = "flake-parts";
-    neovim.inputs.flake-root.follows = "flake-root";
+    neovim = {
+      url = "/Users/jannis/.config/neovim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs-stable";
+        treefmt-nix.follows = "treefmt-nix";
+        flake-parts.follows = "flake-parts";
+        flake-root.follows = "flake-root";
+      };
+    };
+
+    nixpkgs-firefox-darwin = {
+      url = "github:bandithedoge/nixpkgs-firefox-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-auto-follow = {
+      url = "github:fzakaria/nix-auto-follow";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # sops-nix.url = "github:nyarthan/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     # sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-
-    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
-    nixpkgs-firefox-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -48,6 +75,7 @@
       globignore,
       flake-root,
       nixpkgs-firefox-darwin,
+      nix-auto-follow,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -79,6 +107,7 @@
               pkgs.mkpasswd
               pkgs.just
               pkgs.treefmt
+              nix-auto-follow.packages.${system}.default
             ];
 
             shellHook = ''
