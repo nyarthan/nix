@@ -16,6 +16,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    globignore.url = "github:nyarthan/globignore";
+    globignore.inputs.nixpkgs.follows = "nixpkgs";
+
     flake-root.url = "github:srid/flake-root";
 
     neovim.url = "/Users/jannis/.config/neovim";
@@ -42,6 +45,7 @@
       home-manager,
       # sops-nix,
       treefmt-nix,
+      globignore,
       flake-root,
       nixpkgs-firefox-darwin,
       ...
@@ -55,9 +59,17 @@
       systems = [ "aarch64-darwin" ];
 
       perSystem =
-        { pkgs, config, ... }:
         {
-          treefmt.config = import ./treefmt.nix { inherit pkgs config; };
+          pkgs,
+          config,
+          system,
+          ...
+        }:
+        {
+          treefmt.config = import ./treefmt.nix {
+            inherit pkgs config;
+            globignore = globignore.packages.${system}.default;
+          };
 
           devShells.default = pkgs.mkShell {
             packages = [
@@ -65,7 +77,13 @@
               pkgs.age
               pkgs.ssh-to-age
               pkgs.mkpasswd
+              pkgs.just
+              pkgs.treefmt
             ];
+
+            shellHook = ''
+              cp -f ${config.treefmt.build.configFile} treefmt.toml
+            '';
           };
 
           formatter = config.treefmt.build.wrapper;
