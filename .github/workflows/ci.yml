@@ -13,3 +13,6 @@ jobs:
       - name: Check Format
         run: |
           nix develop --command just format-check
+      - name: Check follow propagation
+        run: |
+          nix build .#checks.x86_64-linux.followPropagation

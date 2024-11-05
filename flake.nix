@@ -84,7 +84,10 @@
         flake-root.flakeModule
       ];
 
-      systems = [ "aarch64-darwin" ];
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+      ];
 
       perSystem =
         {
@@ -98,6 +101,8 @@
             inherit pkgs config;
             globignore = globignore.packages.${system}.default;
           };
+
+          formatter = config.treefmt.build.wrapper;
 
           devShells.default = pkgs.mkShell {
             packages = [
@@ -115,7 +120,19 @@
             '';
           };
 
-          formatter = config.treefmt.build.wrapper;
+          checks = {
+            followPropagation =
+              pkgs.runCommandLocal "followPropagation"
+                {
+                  src = ./.;
+                  nativeBuildInputs = [ nix-auto-follow.packages.${system}.default ];
+                }
+                ''
+                  cp $src/flake.lock .
+                  auto-follow -c | grep -q "All ok!" || exit 1
+                  mkdir $out
+                '';
+          };
         };
 
       flake =

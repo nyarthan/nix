@@ -11,3 +11,6 @@ format-check:
 
 rebuild:
     @darwin-rebuild switch --flake ~/nix
+
+check:
+    @nix flake check
