@@ -1,6 +1,6 @@
 {
   pkgs,
-  neovim,
+  inputs,
   lib',
   ...
 }:
@@ -35,6 +35,7 @@ in
     pkgs.ripgrep
     pkgs.vscode
     pkgs.karabiner-driver
-    neovim.packages.aarch64-darwin.default
+    inputs.neovim.packages.aarch64-darwin.default
+    pkgs.cloc
   ];
 }

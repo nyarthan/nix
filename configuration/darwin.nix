@@ -9,8 +9,8 @@ in
   darwinConfigurations.ghost = nix-darwin.lib.darwinSystem {
     specialArgs = args;
     modules = [
-      ./hosts/ghost
-      ./modules/darwin/karabiner-driver.nix
+      ../hosts/ghost
+      ../modules/darwin/karabiner-driver.nix
       home-manager.darwinModules.home-manager
       {
         home-manager = {
