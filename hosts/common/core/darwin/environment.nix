@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib', ... }:
 {
   environment = {
     systemPackages = [
       pkgs.curl
       pkgs.vim
     ];
-    darwinConfig = "/Users/jannis/nix/flake.nix";
+    darwinConfig = lib'.usersDirectory { inherit pkgs; } + "/jannis/nix/flake.nix";
     shells = [ pkgs.bashInteractive ];
   };
 }

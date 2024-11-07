@@ -1,10 +1,17 @@
-{ pkgs, neovim, ... }:
+{
+  pkgs,
+  neovim,
+  lib',
+  ...
+}:
+let
+  username = "jannis";
+in
 {
   imports = [
     ../common/core
     ../common/optional
-    ../common/bundles/dev.nix
-    ../common/bundles/desktop.nix
+    ../common/bundles
   ];
 
   custom.bundle.dev.enable = true;
@@ -13,8 +20,8 @@
   custom.firefox.enable = true;
 
   home = {
-    username = "jannis";
-    homeDirectory = "/Users/jannis";
+    inherit username;
+    homeDirectory = lib'.usersDirectory { inherit pkgs; } + "/${username}";
     stateVersion = "24.05";
   };
 

@@ -88,7 +88,9 @@ if.app-id = 'com.bitwarden.desktop'
 run = 'move-node-to-workspace bitwarden'
 check-further-callbacks = false
 
-# I hate this
+
+# keep application in current workspace
+# SecurityAgent e.g. biometric prompt
 [[on-window-detected]]
 if.app-id = 'com.apple.SecurityAgent'
 if.workspace = 'terminal'
@@ -112,6 +114,7 @@ if.app-id = 'com.apple.SecurityAgent'
 if.workspace = 'bitwarden'
 run = 'move-node-to-workspace terminal'
 check-further-callbacks = false
+
 
 # all windows that don't have a dedicated workspace go to scratchpad
 [[on-window-detected]]
