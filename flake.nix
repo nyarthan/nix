@@ -90,76 +90,25 @@
       ];
 
       perSystem =
-        {
-          pkgs,
-          config,
-          system,
-          ...
-        }:
-        {
-          treefmt.config = import ./treefmt.nix {
-            inherit pkgs config;
-            globignore = globignore.packages.${system}.default;
+        { pkgs, ... }@args:
+        let
+          specialArgs = args // {
+            inherit inputs pkgs;
           };
-
-          formatter = config.treefmt.build.wrapper;
-
-          devShells.default = pkgs.mkShell {
-            packages = [
-              # pkgs.sops
-              pkgs.age
-              pkgs.ssh-to-age
-              pkgs.mkpasswd
-              pkgs.just
-              pkgs.treefmt
-              nix-auto-follow.packages.${system}.default
-            ];
-
-            shellHook = ''
-              cp -f ${config.treefmt.build.configFile} treefmt.toml
-            '';
-          };
-
-          checks = {
-            followPropagation =
-              pkgs.runCommandLocal "followPropagation"
-                {
-                  src = ./.;
-                  nativeBuildInputs = [ nix-auto-follow.packages.${system}.default ];
-                }
-                ''
-                  cp $src/flake.lock .
-                  auto-follow -c | grep -q "All ok!" || exit 1
-                  mkdir $out
-                '';
-          };
-        };
+        in
+        import ./shells/outputs.nix specialArgs
+        // import ./checks/outputs.nix specialArgs
+        // import ./formatter/outptus.nix specialArgs;
 
       flake =
         let
           pkgs = nixpkgs;
           lib' = import ./lib { inherit pkgs; };
           specialArgs = {
-            inherit
-              inputs
-              lib'
-              ;
-            inherit (inputs) neovim;
             inherit (self) outputs;
+            inherit inputs lib';
           };
         in
-        {
-
-          overlays =
-            import ./overlays {
-              inherit inputs pkgs;
-              inherit (self) outputs;
-            }
-            // {
-              firefox = nixpkgs-firefox-darwin.overlay;
-            };
-
-        }
-        // import ./configuration/darwin.nix { inherit specialArgs; };
+        import ./overlays { inherit inputs; } // import ./configuration/darwin.nix { inherit specialArgs; };
     };
 }
