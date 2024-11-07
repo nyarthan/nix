@@ -7,6 +7,6 @@
     shell = pkgs.bashInteractive;
   };
 
-  home-manager.users.jannis = import (lib'.relativeToRoot "home/jannis/darwin.nix");
+  home-manager.users.jannis = import (lib'.relativeToRoot "users/jannis/default.nix");
   home-manager.backupFileExtension = "backup";
 }

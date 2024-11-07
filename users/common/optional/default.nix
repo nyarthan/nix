@@ -8,7 +8,7 @@
     ./docker.nix
     ./podman.nix
     ./social.nix
-    ./aerospace.nix
+    ./aerospace
     ./firefox.nix
     ./gh.nix
   ];
