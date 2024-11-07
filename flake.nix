@@ -159,22 +159,7 @@
               firefox = nixpkgs-firefox-darwin.overlay;
             };
 
-          darwinConfigurations.ghost = nix-darwin.lib.darwinSystem {
-            inherit specialArgs;
-            modules = [
-              ./hosts/ghost
-              ./modules/darwin/karabiner-driver.nix
-              # sops-nix.darwinModules.sops
-              home-manager.darwinModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = specialArgs;
-                };
-              }
-            ];
-          };
-        };
+        }
+        // import ./configuration/darwin.nix { inherit specialArgs; };
     };
 }
