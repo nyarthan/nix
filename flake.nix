@@ -64,24 +64,11 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      flake-parts,
-      nixpkgs,
-      nix-darwin,
-      home-manager,
-      # sops-nix,
-      treefmt-nix,
-      globignore,
-      flake-root,
-      nixpkgs-firefox-darwin,
-      nix-auto-follow,
-      ...
-    }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        treefmt-nix.flakeModule
-        flake-root.flakeModule
+        inputs.treefmt-nix.flakeModule
+        inputs.flake-root.flakeModule
       ];
 
       systems = [
@@ -102,10 +89,10 @@
 
       flake =
         let
-          pkgs = nixpkgs;
+          pkgs = inputs.nixpkgs;
           lib' = import ./lib { inherit pkgs; };
           specialArgs = {
-            inherit (self) outputs;
+            inherit (inputs.self) outputs;
             inherit inputs lib';
           };
         in
