@@ -40,8 +40,6 @@
     neovim = {
       url = "github:nyarthan/neovim";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs-stable";
         treefmt-nix.follows = "treefmt-nix";
         flake-parts.follows = "flake-parts";
         flake-root.follows = "flake-root";
