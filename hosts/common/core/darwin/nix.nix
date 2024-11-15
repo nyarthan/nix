@@ -2,7 +2,6 @@
 {
   nix = {
     settings = {
-      auto-optimise-store = true;
       sandbox = false;
       trusted-users = [
         "root"
@@ -10,6 +9,7 @@
       ];
       experimental-features = "nix-command flakes";
     };
+    optimise.automatic = true;
   };
 
 }
