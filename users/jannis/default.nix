@@ -38,5 +38,6 @@ in
     inputs.neovim.packages.aarch64-darwin.default
     pkgs.cloc
     pkgs.tree
+    pkgs.shortcat
   ];
 }
