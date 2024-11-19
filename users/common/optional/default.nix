@@ -11,5 +11,6 @@
     ./aerospace
     ./firefox.nix
     ./gh.nix
+    ../../../modules/home/wezterm.nix
   ];
 }

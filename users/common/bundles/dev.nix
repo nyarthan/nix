@@ -20,6 +20,7 @@ in
       docker.enable = false;
       podman.enable = true;
       gh.enable = true;
+      wezterm.enable = true;
     };
   };
 }
