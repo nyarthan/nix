@@ -12,7 +12,7 @@
       builtins.fromJSON (
         builtins.readFile (
           pkgs.runCommand "globignore-list" { } ''
-            ${globignore}/bin/globignore --cwd ${../.}  > $out
+            ${globignore}/bin/globignore --cwd ${../.} > $out
           ''
         )
       )

@@ -11,7 +11,10 @@
     karabiner-driver.enable = true;
   };
 
-  fonts.packages = [ pkgs.nerdfonts ];
+  fonts.packages = [
+    pkgs.nerdfonts
+    pkgs.iosevka
+  ];
 
   # sops = {
   #   secrets.jannis-password = { };

@@ -39,5 +39,6 @@ in
     pkgs.cloc
     pkgs.tree
     pkgs.shortcat
+    pkgs.groff
   ];
 }
