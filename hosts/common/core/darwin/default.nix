@@ -4,7 +4,6 @@
     ./bash.nix
     ./documentation.nix
     ./environment.nix
-    ./fonts.nix
     ./homebrew.nix
     ./nix.nix
     ./nixpkgs.nix

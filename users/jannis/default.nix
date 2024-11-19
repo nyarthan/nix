@@ -4,40 +4,63 @@
   lib',
   ...
 }:
-let
-  username = "jannis";
-in
 {
   imports = [
     ../common/core
     ../common/optional
     ../common/bundles
+    (lib'.relativeToRoot "modules/home/fonts.nix")
   ];
 
-  custom.bundle.dev.enable = true;
-  custom.bundle.desktop.enable = true;
-  custom.social.enable = true;
-  custom.firefox.enable = true;
+  custom = {
+    bundle = {
+      dev.enable = true;
+      desktop.enable = true;
+    };
 
-  home = {
-    inherit username;
-    homeDirectory = lib'.usersDirectory { inherit pkgs; } + "/${username}";
-    stateVersion = "24.05";
+    social.enable = true;
+    firefox.enable = true;
+
+    fonts = {
+      enable = true;
+      fonts = [
+        pkgs.nerdfonts
+        pkgs.iosevka
+        pkgs.geist-font
+      ];
+
+      defaultFonts = {
+        monospace = [ "IosevkaTermSlab Nerd Font Mono" ];
+        sansSerif = [ "Geist" ];
+        serif = [ "Geist" ];
+      };
+    };
   };
 
-  home.packages = [
-    pkgs.qbittorrent
-    pkgs.spotify
-    pkgs.tableplus
-    pkgs.lazygit
-    pkgs.zellij
-    pkgs.ripgrep
-    pkgs.vscode
-    pkgs.karabiner-driver
-    inputs.neovim.packages.aarch64-darwin.default
-    pkgs.cloc
-    pkgs.tree
-    pkgs.shortcat
-    pkgs.groff
-  ];
+  home =
+    let
+      username = "jannis";
+    in
+    {
+      inherit username;
+      homeDirectory = lib'.usersDirectory { inherit pkgs; } + "/${username}";
+      stateVersion = "24.05";
+      packages = [
+        pkgs.qbittorrent
+        pkgs.spotify
+        pkgs.tableplus
+        pkgs.lazygit
+        pkgs.zellij
+        pkgs.ripgrep
+        pkgs.vscode
+        pkgs.karabiner-driver
+        inputs.neovim.packages.aarch64-darwin.default
+        pkgs.cloc
+        pkgs.tree
+        pkgs.shortcat
+        pkgs.groff
+      ];
+
+    };
+
 }

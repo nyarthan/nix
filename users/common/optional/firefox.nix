@@ -6,6 +6,7 @@ lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
+    config,
     ...
   }:
   {
@@ -40,9 +41,9 @@ lib'.mkCustomModule [ name ] inputs (
                 complete = true;
               };
               "browser.sessionstore.resume_session_once" = true;
-              "font.name.monospace.x-western" = "Monaspace Neon";
-              "font.name.sans-serif.x-western" = "Geist";
-              "font.name.serif.x-western" = "Geist";
+              "font.name.monospace.x-western" = builtins.elemAt config.custom.fonts.defaultFonts.monospace 0;
+              "font.name.sans-serif.x-western" = builtins.elemAt config.custom.fonts.defaultFonts.sansSerif 0;
+              "font.name.serif.x-western" = builtins.elemAt config.custom.fonts.defaultFonts.serif 0;
             };
 
             search = {

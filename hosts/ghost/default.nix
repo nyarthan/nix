@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ../common/core
@@ -10,11 +10,6 @@
     bash.enable = false;
     karabiner-driver.enable = true;
   };
-
-  fonts.packages = [
-    pkgs.nerdfonts
-    pkgs.iosevka
-  ];
 
   # sops = {
   #   secrets.jannis-password = { };

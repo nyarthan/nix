@@ -6,6 +6,7 @@ lib'.mkCustomModule [ name ] inputs (
   {
     lib,
     cfg,
+    config,
     ...
   }:
   {
@@ -19,8 +20,8 @@ lib'.mkCustomModule [ name ] inputs (
       };
 
       fontFamily = lib.mkOption {
-        type = lib.types.string;
-        default = "IosevkaTermSlab Nerd Font";
+        type = lib.types.listOf lib.types.string;
+        default = config.custom.fonts.defaultFonts.monospace;
         description = "Primary font family";
       };
     };
@@ -67,6 +68,9 @@ lib'.mkCustomModule [ name ] inputs (
           };
 
           extraConfig =
+            let
+              perFont = lua: builtins.concatStringsSep "," (builtins.map (f: lua f) cfg.fontFamily);
+            in
             # lua
             ''
               local term = require "wezterm"
@@ -78,29 +82,49 @@ lib'.mkCustomModule [ name ] inputs (
 
                 font_size = 14,
                 font = term.font_with_fallback {
-                  {
-                    family = "${cfg.fontFamily}",
-                    weight = "Medium",
-                  },
+                  ${
+                    perFont (f:
+                    #lua
+                    ''
+                      {
+                        family = "${f}",
+                        weight = "Medium",
+                      }
+                    '')
+                  }
                 },
                 font_rules = {
-                  {
-                    intensity = "Bold",
-                    italic = false,
-                    font = term.font_with_fallback {
-                      family = "${cfg.fontFamily}",
-                      weight = "ExtraBold",
-                      italc = false,
-                    },
+                  ${
+                    perFont (
+                      f: # lua
+                      ''
+                        {
+                          intensity = "Bold",
+                          italic = false,
+                          font = term.font_with_fallback {
+                            family = "${f}",
+                            weight = "ExtraBold",
+                            italc = false,
+                          }
+                        }
+                      ''
+                    )
                   },
-                  {
-                    intensity = "Bold",
-                    italic = true,
-                    font = term.font_with_fallback {
-                      family = "${cfg.fontFamily}",
-                      weight = "ExtraBold",
-                      italc = true,
-                    },
+                  ${
+                    perFont (
+                      f: # lua
+                      ''
+                        {
+                          intensity = "Bold",
+                          italic = true,
+                          font = term.font_with_fallback {
+                            family = "${f}",
+                            weight = "ExtraBold",
+                            italc = true,
+                          }
+                        }
+                      ''
+                    )
                   },
                 },
 
