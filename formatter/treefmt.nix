@@ -38,5 +38,6 @@
     mdformat.enable = true;
     yamlfmt.enable = true;
     taplo.enable = true;
+    stylua.enable = true;
   };
 }

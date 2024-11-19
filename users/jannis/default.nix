@@ -29,7 +29,6 @@ in
     pkgs.qbittorrent
     pkgs.spotify
     pkgs.tableplus
-    pkgs.wezterm
     pkgs.lazygit
     pkgs.zellij
     pkgs.ripgrep
