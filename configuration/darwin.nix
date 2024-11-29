@@ -11,6 +11,7 @@ in
     modules = [
       ../hosts/ghost
       ../modules/darwin/karabiner-driver.nix
+      ../modules/darwin/stirling-pdf.nix
       home-manager.darwinModules.home-manager
       {
         home-manager = {

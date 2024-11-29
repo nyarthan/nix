@@ -9,6 +9,7 @@
   custom = {
     bash.enable = false;
     karabiner-driver.enable = true;
+    stirling-pdf.enable = false;
   };
 
   # sops = {

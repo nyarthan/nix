@@ -24,7 +24,6 @@
     fonts = {
       enable = true;
       fonts = [
-        pkgs.nerdfonts
         pkgs.iosevka
         pkgs.geist-font
       ];
@@ -59,8 +58,7 @@
         pkgs.tree
         pkgs.shortcat
         pkgs.groff
+        pkgs.thunderbird-unwrapped
       ];
-
     };
-
 }
