@@ -36,6 +36,7 @@
       "zen-browser"
       "vlc"
       "libreoffice"
+      "ghostty"
     ];
 
     masApps = {
