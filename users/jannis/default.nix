@@ -24,12 +24,22 @@
     fonts = {
       enable = true;
       fonts = [
-        pkgs.iosevka
+        (pkgs.iosevka.override {
+          privateBuildPlan = ''
+            [buildPlans.IosevkaCustom]
+            family = "Iosevka Custom"
+            spacing = "term"
+            serifs = "slab"
+            noCvSs = true
+            exportGlyphNames = false
+          '';
+          set = "Custom";
+        })
         pkgs.geist-font
       ];
 
       defaultFonts = {
-        monospace = [ "IosevkaTermSlab Nerd Font Mono" ];
+        monospace = [ "Iosevka Custom" ];
         sansSerif = [ "Geist" ];
         serif = [ "Geist" ];
       };
