@@ -5,7 +5,8 @@ inputs: {
 
       modifications = import ./modifications;
     }
-    // {
-      firefox = inputs.nixpkgs-firefox-darwin.overlay;
-    };
+    # // {
+    #   firefox = inputs.nixpkgs-firefox-darwin.overlay;
+    # };
+    ;
 }

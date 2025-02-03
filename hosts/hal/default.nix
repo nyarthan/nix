@@ -1,16 +1,13 @@
 { ... }:
 {
   imports = [
+    ./hardware-configuration.nix
     ../common/core
-    ../common/core/darwin
-    ../common/users/jannis
+    # ../common/core/nixos
+    ../common/users/jannis/nixos.nix
   ];
 
-  custom = {
-    bash.enable = true;
-    karabiner-driver.enable = true;
-    stirling-pdf.enable = false;
-  };
+  boot.loader.grub.device = "/dev/disk/by-label/NIXBOOT";
 
   # sops = {
   #   secrets.jannis-password = { };

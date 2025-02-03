@@ -94,6 +94,8 @@
             inherit inputs lib';
           };
         in
-        import ./overlays inputs // import ./configuration/darwin.nix specialArgs;
+        import ./overlays inputs 
+	  // import ./configuration/darwin.nix specialArgs
+	  // import ./configuration/nixos.nix specialArgs;
     };
 }

@@ -10,7 +10,7 @@ lib'.mkCustomModule [ name ] inputs (
   }:
   {
     options = {
-      enable = lib.mkEnableOption "bash";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {

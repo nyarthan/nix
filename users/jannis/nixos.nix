@@ -15,11 +15,9 @@
   custom = {
     bundle = {
       dev.enable = true;
-      desktop.enable = true;
     };
 
-    social.enable = true;
-    firefox.enable = true;
+    bash.enable = true;
 
     fonts = {
       enable = true;
@@ -47,6 +45,8 @@
     };
   };
 
+  wayland.windowManager.hyprland.enable = true;
+
   home =
     let
       username = "jannis";
@@ -56,20 +56,11 @@
       homeDirectory = lib'.usersDirectory { inherit pkgs; } + "/${username}";
       stateVersion = "24.05";
       packages = [
-        pkgs.qbittorrent
-        pkgs.spotify
-        pkgs.tableplus
         pkgs.lazygit
         pkgs.zellij
         pkgs.ripgrep
         pkgs.vscode
-        pkgs.karabiner-driver
-        inputs.neovim.packages.aarch64-darwin.default
-        pkgs.cloc
-        pkgs.tree
-        pkgs.shortcat
-        pkgs.groff
-        pkgs.thunderbird-unwrapped
+        inputs.neovim.packages.aarch64-linux.default
       ];
     };
 }
