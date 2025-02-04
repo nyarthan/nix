@@ -3,21 +3,21 @@ let
   inherit (specialArgs.inputs) home-manager nixpkgs;
 in
 {
-  nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+  nixosConfigurations.hal = nixpkgs.lib.nixosSystem {
     inherit specialArgs;
 
-    system = "aarch64-linux";
+    system = "x86_64-linux";
 
     modules = [
-      ../hosts/hal
-      home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = specialArgs;
-        };
-      }
+      ../hosts/hal/configuration.nix
+      # home-manager.nixosModules.home-manager
+      # {
+      #   home-manager = {
+      #     useGlobalPkgs = true;
+      #     useUserPackages = true;
+      #     extraSpecialArgs = specialArgs;
+      #   };
+      # }
     ];
   };
 }
