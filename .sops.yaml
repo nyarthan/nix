@@ -1,11 +1,15 @@
 keys:
-  - &users '':
-      - &jannis age13ufzp8nf6vm9g53slxw684gtej0lchkrdn98327rluv3wrk26q8q9axxqf
-  - &hosts '':
+  - &users:
+      - &jannis age193lkzw6w6ng7yuhjsyl8ulnxwqtl078s262t3jtjhmrquy98qgusdcnpn0
+
+  - &hosts:
       - &MacBook-Pro age1y3u8agtuu5nshfapptrex0892aul7vw9mp2767l98n8n5er4vsgq3ypvq4
+      - &hal age13k5s4g2w55na5g0dj7xk3cjxs62070garqg2w8dx4et48akz5qhqunaszq
+
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - age:
           - *jannis
           - *MacBook-Pro
+          - *hal

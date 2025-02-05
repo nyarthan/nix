@@ -9,6 +9,7 @@ pkgs.mkShell {
   packages = [
     # pkgs.sops
     pkgs.age
+    pkgs.sops
     pkgs.ssh-to-age
     pkgs.mkpasswd
     pkgs.just

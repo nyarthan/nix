@@ -19,6 +19,8 @@
 
     bash.enable = true;
 
+    sops.enable = true;
+
     fonts = {
       enable = true;
       fonts = [
@@ -57,8 +59,8 @@
         pkgs.lazygit
         pkgs.zellij
         pkgs.ripgrep
-        # pkgs.vscode
-        # inputs.neovim.packages.x86_64-linux.default
+        pkgs.vscode
+        inputs.neovim.packages.x86_64-linux.default
       ];
     };
 }

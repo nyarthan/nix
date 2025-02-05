@@ -56,9 +56,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # sops-nix.url = "github:nyarthan/sops-nix";
-    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -94,8 +95,8 @@
             inherit inputs lib';
           };
         in
-        import ./overlays inputs 
-	  // import ./configuration/darwin.nix specialArgs
-	  // import ./configuration/nixos.nix specialArgs;
+        import ./overlays inputs
+        // import ./configuration/darwin.nix specialArgs
+        // import ./configuration/nixos.nix specialArgs;
     };
 }

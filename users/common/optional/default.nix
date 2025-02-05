@@ -11,6 +11,7 @@
     ./aerospace
     ./firefox.nix
     ./gh.nix
+    ./sops.nix
     (lib'.relativeToRoot "modules/home/wezterm.nix")
   ];
 }
