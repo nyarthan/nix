@@ -1,4 +1,10 @@
 { ... }:
 {
-  imports = [ ../common ./nixpkgs.nix ./sops.nix ];
+  imports = [
+    ../common
+    ./nixpkgs.nix
+    ./sops.nix
+    ./documentation.nix
+    ./environment.nix
+  ];
 }

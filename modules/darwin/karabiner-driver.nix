@@ -1,9 +1,12 @@
+let
+  name = "karabiner-driver";
+in
 inputs@{ lib', pkgs, ... }:
-lib'.mkCustomModule [ "karabiner-driver" ] inputs (
+lib'.mkCustomModule [ name ] inputs (
   { lib, cfg, ... }:
   {
     options = {
-      enable = lib.mkEnableOption "Enables karabiner driver";
+      enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf cfg.enable {
@@ -12,7 +15,7 @@ lib'.mkCustomModule [ "karabiner-driver" ] inputs (
         /Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate
       '';
 
-      launchd.daemons.karabiner-driver = {
+      launchd.daemons.${name} = {
         serviceConfig = {
           Label = "org.pqrs.Karabiner-Driver-Init";
           KeepAlive = true;

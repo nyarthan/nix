@@ -24,11 +24,20 @@
     kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
   };
 
+  sops.secrets.wireless_psks = { };
+
   networking = {
     hostName = "hal";
     wireless = {
       enable = true;
       userControlled.enable = true;
+
+      networks = {
+        "MagentaWLAN-ANEB" = {
+          pskRaw = "ext:psk_MagentaWLAN-ANEB";
+        };
+      };
+      secretsFile = "/run/secrets/wireless_psks";
     };
   };
 
@@ -86,30 +95,32 @@
     ];
   };
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      onevpl-intel-gpu
+  hardware = {
+    enableAllFirmware = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        onevpl-intel-gpu
+      ];
+    };
+    firmware = [
+      (
+        let
+          model = "37xx";
+          version = "0.0";
+
+          firmware = pkgs.fetchurl {
+            url = "https://github.com/intel/linux-npu-driver/raw/v1.2.0/firmware/bin/vpu_${model}_v${version}.bin";
+            hash = "sha256-qGhLLiBnOlmF/BEIGC7DEPjfgdLCaMe7mWEtM9uK1mo=";
+          };
+        in
+        pkgs.runCommand "intel-vpu-firmware-${model}-${version}" { } ''
+          mkdir -p "$out/lib/firmware/intel/vpu"
+          cp '${firmware}' "$out/lib/firmware/intel/vpu/vpu_${model}_v${version}.bin"
+        ''
+      )
     ];
   };
-
-  hardware.firmware = [
-    (
-      let
-        model = "37xx";
-        version = "0.0";
-
-        firmware = pkgs.fetchurl {
-          url = "https://github.com/intel/linux-npu-driver/raw/v1.2.0/firmware/bin/vpu_${model}_v${version}.bin";
-          hash = "sha256-qGhLLiBnOlmF/BEIGC7DEPjfgdLCaMe7mWEtM9uK1mo=";
-        };
-      in
-      pkgs.runCommand "intel-vpu-firmware-${model}-${version}" { } ''
-        mkdir -p "$out/lib/firmware/intel/vpu"
-        cp '${firmware}' "$out/lib/firmware/intel/vpu/vpu_${model}_v${version}.bin"
-      ''
-    )
-  ];
 
   system.stateVersion = "25.05";
 }

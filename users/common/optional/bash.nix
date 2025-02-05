@@ -15,16 +15,16 @@ lib'.mkCustomModule [ name ] inputs (
 
     config = lib.mkIf cfg.enable {
       home.packages = [
-        pkgs.blesh
+        pkgs.bat
       ];
 
       programs.bash = {
         enable = true;
         enableCompletion = true;
         initExtra = ''
-          # source ${pkgs.blesh}/share/blesh/ble.sh --rcfile "$HOME/.blerc"
-          # [[ ! ''${BLE_VERSION-} ]] || ble-attach
           export PS1='$(starship prompt)'
+          export MANPAGER='sh -c "col -bx | bat -l man -p"'
+          export MANROFFOPT="-c";
         '';
         historyFile = "$HOME/.bash_history";
         historyIgnore = [
