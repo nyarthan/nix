@@ -69,17 +69,18 @@ lib'.mkCustomModule [ name ] inputs (
 
           extraConfig =
             let
-              inherit (lib.generators) toLua mkLuaInline;
+              inherit (lib.generators)  mkLuaInline;
+              toLua = lib.generators.toLua {};
             in
             ''
               return ${
-                toLua {} {
+                toLua {
                   inherit colorscheme;
                   max_fps = 120;
                   default_prog = [ (lib.meta.getExe' pkgs.fish "fish") ];
                   font_size = 14;
                   font = mkLuaInline ''wezterm.font_with_fallback ${
-                    toLua {} (
+                    toLua (
                       builtins.map (family: {
                         inherit family;
                         weight = "Medium";
@@ -91,7 +92,7 @@ lib'.mkCustomModule [ name ] inputs (
                       intensity = "Bold";
                       italic = false;
                       font = mkLuaInline ''wezterm.font_with_fallback ${
-                        toLua {} {
+                        toLua {
                           inherit family;
                           weight = "ExtraBold";
                           italic = false;
@@ -102,7 +103,7 @@ lib'.mkCustomModule [ name ] inputs (
                       intensity = "Bold";
                       italic = true;
                       font = mkLuaInline ''wezterm.font_with_fallback ${
-                        toLua {} {
+                        toLua  {
                           inherit family;
                           weight = "ExtraBold";
                           italic = true;
