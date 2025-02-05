@@ -6,5 +6,6 @@
     ./sops.nix
     ./documentation.nix
     ./environment.nix
+    ./nix.nix
   ];
 }
