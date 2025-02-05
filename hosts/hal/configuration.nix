@@ -13,7 +13,7 @@
 
     ../common/core
     ../common/core/nixos
-    # ../common/users/jannis/nixos.nix
+    ../common/users/jannis/nixos.nix
   ];
 
   boot = {

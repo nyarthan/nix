@@ -3,7 +3,7 @@
   imports = [
     ../common/core
     ../common/core/darwin
-    ../common/users/jannis
+    ../common/users/jannis/darwin.nix
   ];
 
   custom = {

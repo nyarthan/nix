@@ -45,8 +45,6 @@
     };
   };
 
-  wayland.windowManager.hyprland.enable = true;
-
   home =
     let
       username = "jannis";
@@ -54,13 +52,13 @@
     {
       inherit username;
       homeDirectory = lib'.usersDirectory { inherit pkgs; } + "/${username}";
-      stateVersion = "24.05";
+      stateVersion = "25.05";
       packages = [
         pkgs.lazygit
         pkgs.zellij
         pkgs.ripgrep
-        pkgs.vscode
-        inputs.neovim.packages.aarch64-linux.default
+        # pkgs.vscode
+        # inputs.neovim.packages.x86_64-linux.default
       ];
     };
 }
