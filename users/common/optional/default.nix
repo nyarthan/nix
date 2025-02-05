@@ -13,5 +13,6 @@
     ./gh.nix
     ./sops.nix
     (lib'.relativeToRoot "modules/home/wezterm.nix")
+    (lib'.relativeToRoot "modules/home/ghostty.nix")
   ];
 }

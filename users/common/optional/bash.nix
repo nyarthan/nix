@@ -32,6 +32,9 @@ lib'.mkCustomModule [ name ] inputs (
           "cd"
           "exit"
           "clear"
+          "nvim"
+          "history"
+          "zellij"
         ];
         shellAliases = {
           ll = "ls -l";

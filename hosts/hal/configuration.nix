@@ -91,7 +91,6 @@
       git
       wget
       curl
-      ghostty
     ];
   };
 
