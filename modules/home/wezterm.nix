@@ -69,88 +69,62 @@ lib'.mkCustomModule [ name ] inputs (
 
           extraConfig =
             let
-              perFont = lua: builtins.concatStringsSep "," (builtins.map (f: lua f) cfg.fontFamily);
+              inherit (lib.generators) toLua mkLuaInline;
             in
-            # lua
             ''
-              local term = require "wezterm"
-
-              return {
-                max_fps = 120,
-
-                default_prog = { "${lib.meta.getExe' pkgs.fish "fish"}" },
-
-                font_size = 14,
-                font = term.font_with_fallback {
-                  ${
-                    perFont (f:
-                    #lua
-                    ''
-                      {
-                        family = "${f}",
-                        weight = "Medium",
-                      }
-                    '')
-                  }
-                },
-                font_rules = {
-                  ${
-                    perFont (
-                      f: # lua
-                      ''
-                        {
-                          intensity = "Bold",
-                          italic = false,
-                          font = term.font_with_fallback {
-                            family = "${f}",
-                            weight = "ExtraBold",
-                            italc = false,
-                          }
-                        }
-                      ''
+              return ${
+                toLua {} {
+                  inherit colorscheme;
+                  max_fps = 120;
+                  default_prog = [ (lib.meta.getExe' pkgs.fish "fish") ];
+                  font_size = 14;
+                  font = mkLuaInline ''wezterm.font_with_fallback ${
+                    toLua {} (
+                      builtins.map (family: {
+                        inherit family;
+                        weight = "Medium";
+                      }) cfg.fontFamily
                     )
-                  },
-                  ${
-                    perFont (
-                      f: # lua
-                      ''
-                        {
-                          intensity = "Bold",
-                          italic = true,
-                          font = term.font_with_fallback {
-                            family = "${f}",
-                            weight = "ExtraBold",
-                            italc = true,
-                          }
+                  }'';
+                  font_rules = [
+                    (builtins.map (family: {
+                      intensity = "Bold";
+                      italic = false;
+                      font = mkLuaInline ''wezterm.font_with_fallback ${
+                        toLua {} {
+                          inherit family;
+                          weight = "ExtraBold";
+                          italic = false;
                         }
-                      ''
-                    )
-                  },
-                },
-
-                color_scheme = "${colorscheme}",
-
-                scrollback_lines = 10000,
-
-                window_padding = {
-                  left = 0,
-                  right = 0,
-                  top = 0,
-                  bottom = 0,
-                },
-
-                enable_tab_bar = false,
-                hide_tab_bar_if_only_one_tab = true,
-
-                -- cursor_blink_rate = 800,
-                cursor_thickness = "0.1cell",
-                custom_block_glyphs = true,
-                default_cursor_style = "BlinkingBar",
-
-                -- https://www.reddit.com/r/wezterm/comments/1eze6zt/colored_blocks_instead_of_text/
-                front_end = "WebGpu",
-
-                window_decorations = "RESIZE",
+                      }'';
+                    }) cfg.fontFamily)
+                    (builtins.map (family: {
+                      intensity = "Bold";
+                      italic = true;
+                      font = mkLuaInline ''wezterm.font_with_fallback ${
+                        toLua {} {
+                          inherit family;
+                          weight = "ExtraBold";
+                          italic = true;
+                        }
+                      }'';
+                    }) cfg.fontFamily)
+                  ];
+                  scrollback_lines = 10000;
+                  window_padding = {
+                    left = 0;
+                    right = 0;
+                    top = 0;
+                    bottom = 0;
+                  };
+                  enable_tab_bar = false;
+                  hide_tab_bar_if_only_one_tab = true;
+                  cursor_thickness = "0.1cell";
+                  custom_block_glyphs = true;
+                  default_cursor_style = "BlinkingBar";
+                  front_end = "WebGpu";
+                  window_decorations = "RESIZE";
+                }
               }
             '';
         };
