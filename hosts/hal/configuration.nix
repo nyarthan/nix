@@ -11,8 +11,8 @@
     }/module.nix"
     ./disk-configuration.nix
 
-    # ../common/core
-    # ../common/core/nixos
+    ../common/core
+    ../common/core/nixos
     # ../common/users/jannis/nixos.nix
   ];
 

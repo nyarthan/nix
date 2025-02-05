@@ -10,14 +10,14 @@ in
 
     modules = [
       ../hosts/hal/configuration.nix
-      # home-manager.nixosModules.home-manager
-      # {
-      #   home-manager = {
-      #     useGlobalPkgs = true;
-      #     useUserPackages = true;
-      #     extraSpecialArgs = specialArgs;
-      #   };
-      # }
+      home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = specialArgs;
+        };
+      }
     ];
   };
 }

@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
-    ./bash.nix
+    ../common
+
     ./documentation.nix
+    ./nixpkgs.nix
     ./environment.nix
     ./homebrew.nix
-    ./nix.nix
-    ./nixpkgs.nix
     ./security.nix
     ./services.nix
     ./system.nix
