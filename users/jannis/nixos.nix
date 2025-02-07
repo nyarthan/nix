@@ -20,6 +20,7 @@
     bash.enable = true;
     sops.enable = true;
     ghostty.enable = true;
+    tmux.enable = true;
 
     fonts = {
       enable = true;
@@ -60,6 +61,9 @@
         pkgs.zellij
         pkgs.ripgrep
         pkgs.vscode
+        pkgs.cargo
+        pkgs.rustc
+        pkgs.gcc
         inputs.neovim.packages.x86_64-linux.default
       ];
     };
