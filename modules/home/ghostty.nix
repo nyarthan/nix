@@ -1,7 +1,7 @@
 let
   name = "ghostty";
 in
-{ lib', pkgs, ... }@inputs:
+{ lib', ... }@inputs:
 lib'.mkCustomModule [ name ] inputs (
   {
     lib,
@@ -33,6 +33,7 @@ lib'.mkCustomModule [ name ] inputs (
         enableBashIntegration = lib.mkIf config.custom.bash.enable true;
         settings = {
           theme = "3024 Night";
+          window-decoration = "none";
         };
       };
     };
