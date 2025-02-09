@@ -69,7 +69,11 @@
     videoDrivers = [ "modesetting" ];
 
     desktopManager.xterm.enable = false;
+
+    windowManager.i3.enable = true;
   };
+
+  services.displayManager.defaultSession = "none+i3";
 
   environment = {
     pathsToLink = [ "/libexe" ];
