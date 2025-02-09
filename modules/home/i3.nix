@@ -26,7 +26,8 @@ lib'.mkCustomModule [ name ] inputs (
         enable = true;
         config = {
           assigns = {
-            "Web" = [ { class = "^Firefox$"; } ];
+            "1: Web" = [ { class = "^Firefox$"; } ];
+            "2: Term" = [ { class = "^ghostty$"; } ];
           };
           fonts = {
             names = config.custom.fonts.defaultFonts.monospace;
@@ -42,6 +43,7 @@ lib'.mkCustomModule [ name ] inputs (
             lib.mkOptionDefault {
               "${mod}+Return" = "exec ghostty";
               "${mod}+space" = "exec dmenu_run";
+              "${mod}+b" = "exec firefox";
             };
         };
       };
