@@ -6,6 +6,8 @@
   ...
 }:
 pkgs.mkShell {
+  name = "nix-config";
+
   packages = [
     # pkgs.sops
     pkgs.age
