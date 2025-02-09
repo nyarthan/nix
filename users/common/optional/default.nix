@@ -15,5 +15,6 @@
     (lib'.relativeToRoot "modules/home/wezterm.nix")
     (lib'.relativeToRoot "modules/home/ghostty.nix")
     (lib'.relativeToRoot "modules/home/tmux.nix")
+    (lib'.relativeToRoot "modules/home/i3.nix")
   ];
 }

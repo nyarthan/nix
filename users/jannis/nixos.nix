@@ -21,6 +21,7 @@
     sops.enable = true;
     ghostty.enable = true;
     tmux.enable = true;
+    i3.enable = true;
 
     fonts = {
       enable = true;
