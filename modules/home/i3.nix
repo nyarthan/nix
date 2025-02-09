@@ -34,6 +34,7 @@ lib'.mkCustomModule [ name ] inputs (
             size = 11.0;
           };
           workspaceAutoBackAndForth = true;
+          modifier = "Mod4"; # Super
           keybindings =
             let
               mod = config.xsession.windowManager.i3.config.modifier;
