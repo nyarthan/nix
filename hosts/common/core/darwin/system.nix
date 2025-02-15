@@ -4,7 +4,6 @@
     stateVersion = 5;
     checks = {
       verifyBuildUsers = true;
-      verifyNixChannels = true;
       # this shit is broken idk man
       # verifyNixPath = true;
     };

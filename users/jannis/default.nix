@@ -67,9 +67,6 @@
         inputs.neovim.packages.aarch64-darwin.default
         pkgs.cloc
         pkgs.tree
-        pkgs.shortcat
-        pkgs.groff
-        pkgs.thunderbird-unwrapped
       ];
     };
 }

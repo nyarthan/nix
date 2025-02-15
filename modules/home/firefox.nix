@@ -18,7 +18,7 @@ lib'.mkCustomModule [ name ] inputs (
       programs.firefox = {
         enable = true;
 
-        package = pkgs.firefox-bin;
+        package = if pkgs.stdenv.isDarwin then pkgs.firefox-bin else pkgs.firefox;
 
         profiles = {
           default = {
@@ -92,7 +92,7 @@ lib'.mkCustomModule [ name ] inputs (
                       ];
                     }
                   ];
-                  icon = ../../../assets/youtube.svg;
+                  icon = ../../assets/youtube.svg;
                   definedAliases = [ "@yt" ];
                 };
                 "Docs.rs" = {
@@ -107,7 +107,7 @@ lib'.mkCustomModule [ name ] inputs (
                       ];
                     }
                   ];
-                  icon = ../../../assets/cubes.svg;
+                  icon = ../../assets/cubes.svg;
                   definedAliases = [ "@docsrs" ];
                 };
                 "crates.io" = {
@@ -122,7 +122,7 @@ lib'.mkCustomModule [ name ] inputs (
                       ];
                     }
                   ];
-                  icon = ../../../assets/cargo.png;
+                  icon = ../../assets/cargo.png;
                   definedAliases = [ "@crates" ];
                 };
               };

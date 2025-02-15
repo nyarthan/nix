@@ -14,7 +14,7 @@ lib'.mkCustomModule [ name ] inputs (
       home.packages = [
         pkgs.slack
         pkgs.discord
-        pkgs.teams
+        # pkgs.teams
       ];
     };
   }
