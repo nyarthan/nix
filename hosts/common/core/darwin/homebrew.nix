@@ -22,6 +22,7 @@
       "vlc"
       "ghostty"
       "gather"
+      "zen-browser"
     ];
 
     masApps = {
