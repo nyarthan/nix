@@ -16,5 +16,6 @@
     (lib'.relativeToRoot "modules/home/ghostty.nix")
     (lib'.relativeToRoot "modules/home/tmux.nix")
     (lib'.relativeToRoot "modules/home/i3.nix")
+    (lib'.relativeToRoot "modules/home/devenv.nix")
   ];
 }

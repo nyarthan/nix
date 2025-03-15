@@ -8,7 +8,7 @@ let
 in
 {
   options.custom.bundle.dev = {
-    enable = lib.mkEnableOption "Enables dev bundle";
+    enable = lib.mkEnableOption "dev bundle";
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,6 +21,7 @@ in
       podman.enable = true;
       gh.enable = true;
       wezterm.enable = true;
+      devenv.enable = true;
     };
   };
 }

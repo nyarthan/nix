@@ -69,8 +69,8 @@ lib'.mkCustomModule [ name ] inputs (
 
           extraConfig =
             let
-              inherit (lib.generators)  mkLuaInline;
-              toLua = lib.generators.toLua {};
+              inherit (lib.generators) mkLuaInline;
+              toLua = lib.generators.toLua { };
             in
             ''
               return ${
@@ -103,7 +103,7 @@ lib'.mkCustomModule [ name ] inputs (
                       intensity = "Bold";
                       italic = true;
                       font = mkLuaInline ''wezterm.font_with_fallback ${
-                        toLua  {
+                        toLua {
                           inherit family;
                           weight = "ExtraBold";
                           italic = true;

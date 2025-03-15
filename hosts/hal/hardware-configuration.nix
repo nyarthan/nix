@@ -23,7 +23,11 @@
       "kvm_intel"
       "i915"
     ];
-    kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
+    kernelParams = [
+      "apm=power_off"
+      "acpi=force"
+      "reboot=acpi"
+    ];
     extraModprobeConfig = ''
       options i915 enable_guc=2
     '';

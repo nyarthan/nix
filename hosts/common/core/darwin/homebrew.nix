@@ -21,6 +21,7 @@
       "obsidian"
       "vlc"
       "ghostty"
+      "gather"
     ];
 
     masApps = {

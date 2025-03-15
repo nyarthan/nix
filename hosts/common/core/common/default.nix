@@ -3,6 +3,6 @@
   imports = [
     ./nix.nix
     ./nixpkgs.nix
-		./bash.nix
+    ./bash.nix
   ];
 }
