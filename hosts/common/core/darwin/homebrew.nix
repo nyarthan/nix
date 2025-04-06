@@ -25,12 +25,12 @@
       "zen-browser"
     ];
 
-    masApps = {
-      AusweisApp = 948660805;
-      Word = 462054704;
-      Excel = 462058435;
-      Bitwarden = 1352778147;
-    };
+    # masApps = {
+    #   AusweisApp = 948660805;
+    #   Word = 462054704;
+    #   Excel = 462058435;
+    #   Bitwarden = 1352778147;
+    # };
   };
 
 }
