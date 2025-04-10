@@ -22,6 +22,7 @@ in
       gh.enable = true;
       wezterm.enable = true;
       devenv.enable = true;
+      act.enable = true;
     };
   };
 }

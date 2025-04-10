@@ -17,5 +17,6 @@
     (lib'.relativeToRoot "modules/home/tmux.nix")
     (lib'.relativeToRoot "modules/home/i3.nix")
     (lib'.relativeToRoot "modules/home/devenv.nix")
+    (lib'.relativeToRoot "modules/home/act.nix")
   ];
 }
