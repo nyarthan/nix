@@ -65,8 +65,12 @@
         pkgs.vscode
         pkgs.karabiner-driver
         inputs.neovim.packages.aarch64-darwin.default
+        pkgs.ghostty
+        pkgs.gather
+        pkgs.figma
         pkgs.cloc
         pkgs.tree
+        pkgs.karabiner-elements
       ];
     };
 }

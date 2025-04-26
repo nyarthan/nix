@@ -6,4 +6,7 @@
   geist = pkgs.callPackage ./geist.nix { };
   karabiner-driver = pkgs.callPackage ./karabiner-driver.nix { };
   stirling-pdf = pkgs.callPackage ./stirling-pdf.nix { };
+  ghostty = pkgs.callPackage ./ghostty.nix { };
+  gather = pkgs.callPackage ./gather.nix { };
+  figma = pkgs.callPackage ./figma.nix { };
 }

@@ -9,19 +9,12 @@
     };
 
     casks = [
-      "steam"
       "protonvpn"
-      "affinity-photo"
-      "affinity-designer"
-      "affinity-publisher"
-      "figma"
       "vmware-fusion"
       "whatsapp@beta"
       "raycast"
       "obsidian"
       "vlc"
-      "ghostty"
-      "gather"
       "zen-browser"
     ];
 
