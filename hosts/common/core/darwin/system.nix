@@ -7,6 +7,7 @@
       # this shit is broken idk man
       # verifyNixPath = true;
     };
+    primaryUser = "Jannis";
     defaults = {
       ActivityMonitor = {
         OpenMainWindow = true;

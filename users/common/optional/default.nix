@@ -9,7 +9,6 @@
     (lib'.relativeToRoot "modules/home/podman.nix")
     (lib'.relativeToRoot "modules/home/social.nix")
     (lib'.relativeToRoot "modules/home/aerospace")
-    (lib'.relativeToRoot "modules/home/firefox.nix")
     (lib'.relativeToRoot "modules/home/gh.nix")
     (lib'.relativeToRoot "modules/home/sops.nix")
     (lib'.relativeToRoot "modules/home/wezterm.nix")

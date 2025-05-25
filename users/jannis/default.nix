@@ -19,7 +19,6 @@
     };
 
     social.enable = true;
-    firefox.enable = true;
 
     fonts = {
       enable = true;
