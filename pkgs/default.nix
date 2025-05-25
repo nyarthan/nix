@@ -9,4 +9,7 @@
   ghostty = pkgs.callPackage ./ghostty.nix { };
   gather = pkgs.callPackage ./gather.nix { };
   figma = pkgs.callPackage ./figma.nix { };
+  zen-browser = pkgs.callPackage ./zen-browser.nix { };
+  whatsapp = pkgs.callPackage ./whatsapp.nix { };
+  protonvpn = pkgs.callPackage ./protonvpn.nix { };
 }
