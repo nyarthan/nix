@@ -83,6 +83,11 @@
         pkgs.whatsapp
         pkgs.protonvpn
         pkgs.nushell
+        pkgs.dust
+        pkgs.hyperfine
+        pkgs.yazi
+        pkgs.mask
+        pkgs.delta
       ];
     };
 }
