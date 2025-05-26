@@ -14,7 +14,7 @@ pkgs.mkShell {
     pkgs.sops
     pkgs.ssh-to-age
     pkgs.mkpasswd
-    pkgs.just
+    pkgs.mask
     pkgs.treefmt
     inputs.nix-auto-follow.packages.${system}.default
   ];
