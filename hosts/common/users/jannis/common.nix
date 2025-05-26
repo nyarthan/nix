@@ -5,7 +5,7 @@
     description = "Primary Account";
     home = lib'.usersDirectory { inherit pkgs; } + "/jannis";
     # isHidden = false;
-    # shell = pkgs.fish;
+    shell = pkgs.nushell;
     # extraGroups = [ "wheel" ];
     # group = "jannis";
 

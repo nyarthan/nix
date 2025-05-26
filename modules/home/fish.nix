@@ -1,7 +1,7 @@
 let
   name = "fish";
 in
-{ lib', ... }@inputs:
+{ lib', pkgs, ... }@inputs:
 lib'.mkCustomModule [ name ] inputs (
   {
     lib,
@@ -15,10 +15,13 @@ lib'.mkCustomModule [ name ] inputs (
     };
 
     config = lib.mkIf cfg.enable {
+      home.packages = [ pkgs.carapace ];
       programs.fish = lib.mkIf cfg.enable {
         enable = true;
         shellInit = ''
           fish_add_path /opt/homebrew/Cellar/postgresql@16/16.4/bin
+          set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+          carapace _carapace | source
         '';
         functions = {
           docker = lib.mkIf config.custom.docker.enable {

@@ -19,6 +19,8 @@
     };
 
     social.enable = true;
+    ghostty.enable = true;
+    nushell.enable = true;
 
     fonts = {
       enable = true;
@@ -68,7 +70,6 @@
         pkgs.vscode
         pkgs.karabiner-driver
         inputs.neovim.packages.aarch64-darwin.default
-        pkgs.ghostty
         pkgs.gather
         pkgs.figma
         pkgs.cloc
@@ -81,6 +82,7 @@
         pkgs.zen-browser
         pkgs.whatsapp
         pkgs.protonvpn
+        pkgs.nushell
       ];
     };
 }

@@ -1,7 +1,7 @@
 let
-  name = "ghostty";
+  name = "nushell";
 in
-{ lib', pkgs, ... }@inputs:
+{ lib', ... }@inputs:
 lib'.mkCustomModule [ name ] inputs (
   {
     lib,
@@ -15,13 +15,11 @@ lib'.mkCustomModule [ name ] inputs (
     };
 
     config = lib.mkIf cfg.enable {
-      programs.ghostty = {
+      programs.nushell = {
         enable = true;
-        # package = pkgs.ghostty;
         settings = {
-          theme = "3024 Night";
-          window-decoration = "none";
-          command = (lib.meta.getExe' pkgs.tmux "tmux");
+          show_banner = false;
+          buffer_editor = "/etc/profiles/per-user/jannis/bin/nvim";
         };
       };
     };

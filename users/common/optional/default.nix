@@ -13,6 +13,7 @@
     (lib'.relativeToRoot "modules/home/sops.nix")
     (lib'.relativeToRoot "modules/home/wezterm.nix")
     (lib'.relativeToRoot "modules/home/ghostty.nix")
+    (lib'.relativeToRoot "modules/home/nushell.nix")
     (lib'.relativeToRoot "modules/home/tmux.nix")
     (lib'.relativeToRoot "modules/home/i3.nix")
     (lib'.relativeToRoot "modules/home/devenv.nix")

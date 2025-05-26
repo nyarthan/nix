@@ -25,12 +25,15 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/Applications
+    mkdir -p $out/bin
     cp -r ${appName}.app $out/Applications/
+    cp ${appName}.app/Contents/MacOS/ghostty $out/bin
   '';
 
   meta = {
     description = appName;
     license = lib.licenses.free;
     platforms = lib.platforms.darwin;
+    mainProgram = "ghostty";
   };
 }

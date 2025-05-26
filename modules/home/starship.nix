@@ -18,8 +18,9 @@ lib'.mkCustomModule [ name ] inputs (
       programs.starship = {
         enable = true;
 
-        enableFishIntegration = lib.mkIf config.custom.fish.enable true;
         enableBashIntegration = lib.mkIf config.custom.bash.enable true;
+        enableFishIntegration = lib.mkIf config.custom.fish.enable true;
+        enableNushellIntegration = lib.mkIf config.custom.nushell.enable true;
 
         settings = {
           add_newline = false;
