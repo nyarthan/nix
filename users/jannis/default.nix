@@ -55,7 +55,7 @@
     {
       inherit username;
       homeDirectory = lib'.usersDirectory { inherit pkgs; } + "/${username}";
-      stateVersion = "24.05";
+      stateVersion = "25.05";
       sessionVariables = {
         PNPM_HOME = "/Users/jannis/Library/pnpm";
       };

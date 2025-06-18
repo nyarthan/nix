@@ -1,7 +1,7 @@
 { ... }:
 {
   homebrew = {
-    enable = true;
+    enable = false;
     onActivation.cleanup = "zap";
     caskArgs.no_quarantine = true;
     global = {
@@ -10,6 +10,7 @@
 
     casks = [
       "raycast"
+      "steam"
     ];
   };
 
