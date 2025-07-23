@@ -32,6 +32,8 @@ lib'.mkCustomModule [ name ] inputs (
 
         [rerere]
           enabled = true
+
+
       '';
 
       programs.git = {

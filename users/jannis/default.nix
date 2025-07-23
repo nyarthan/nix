@@ -81,7 +81,7 @@
         pkgs.karabiner-elements
         pkgs.zen-browser
         pkgs.whatsapp
-        pkgs.protonvpn
+        # pkgs.protonvpn
         pkgs.nushell
         pkgs.dust
         pkgs.hyperfine

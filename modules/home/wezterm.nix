@@ -1,7 +1,7 @@
 let
   name = "wezterm";
 in
-{ lib', pkgs, ... }@inputs:
+{ lib', ... }@inputs:
 lib'.mkCustomModule [ name ] inputs (
   {
     lib,
@@ -27,108 +27,54 @@ lib'.mkCustomModule [ name ] inputs (
     };
 
     config = lib.mkIf cfg.enable {
-      programs.wezterm =
-        let
-          colorscheme = "vesper";
-        in
-        {
-          enable = true;
+      programs.wezterm = {
+        enable = true;
 
-          colorSchemes = {
-            ${colorscheme} = {
-              foreground = "#FFFFFF";
-              background = "#101010";
-              cursor_bg = "#FFC799";
-              cursor_border = "#FFC799";
-              cursor_fg = "#FFFFFF";
-              selection_bg = "#232323";
-              selection_fg = "#FFFFFF";
-              ansi = [
-                "#101010"
-                "#f5a191"
-                "#90b99f"
-                "#e6b99d"
-                "#aca1cf"
-                "#e29eca"
-                "#ea83a5"
-                "#A0A0A0"
-              ];
-              brights = [
-                "#7E7E7E"
-                "#ff8080"
-                "#99FFE4"
-                "#FFC799"
-                "#b9aeda"
-                "#ecaad6"
-                "#f591b2"
-                "#ffffff"
-              ];
-              scrollbar_thumb = "#343434";
-            };
-          };
+        extraConfig =
+          # lua
+          ''
+            local wezterm = require("wezterm")
 
-          extraConfig =
-            let
-              inherit (lib.generators) mkLuaInline;
-              toLua = lib.generators.toLua { };
-            in
-            ''
-              return ${
-                toLua {
-                  inherit colorscheme;
-                  max_fps = 120;
-                  default_prog = [ (lib.meta.getExe' pkgs.fish "fish") ];
-                  font_size = 14;
-                  font = mkLuaInline ''wezterm.font_with_fallback ${
-                    toLua (
-                      builtins.map (family: {
-                        inherit family;
-                        weight = "Medium";
-                      }) cfg.fontFamily
-                    )
-                  }'';
-                  font_rules = [
-                    (builtins.map (family: {
-                      intensity = "Bold";
-                      italic = false;
-                      font = mkLuaInline ''wezterm.font_with_fallback ${
-                        toLua {
-                          inherit family;
-                          weight = "ExtraBold";
-                          italic = false;
-                        }
-                      }'';
-                    }) cfg.fontFamily)
-                    (builtins.map (family: {
-                      intensity = "Bold";
-                      italic = true;
-                      font = mkLuaInline ''wezterm.font_with_fallback ${
-                        toLua {
-                          inherit family;
-                          weight = "ExtraBold";
-                          italic = true;
-                        }
-                      }'';
-                    }) cfg.fontFamily)
-                  ];
-                  scrollback_lines = 10000;
-                  window_padding = {
-                    left = 0;
-                    right = 0;
-                    top = 0;
-                    bottom = 0;
-                  };
-                  enable_tab_bar = false;
-                  hide_tab_bar_if_only_one_tab = true;
-                  cursor_thickness = "0.1cell";
-                  custom_block_glyphs = true;
-                  default_cursor_style = "BlinkingBar";
-                  front_end = "WebGpu";
-                  window_decorations = "RESIZE";
-                }
-              }
-            '';
-        };
+            local config = wezterm.config_builder()
+
+            -- display_pixel_geometry = "BGR"
+
+            config.default_prog = { "/etc/profiles/per-user/jannis/bin/nu", "-c", "/etc/profiles/per-user/jannis/bin/tmux"}
+
+            config.color_scheme = "Black Metal (Gorgoroth) (base16)"
+
+            config.font = wezterm.font_with_fallback({
+              "Iosevka",
+            })
+            config.font_size = 14
+
+            config.window_background_opacity = 0.8
+            config.macos_window_background_blur = 20
+
+            config.front_end = "WebGpu"
+            config.webgpu_power_preference = "HighPerformance"
+            config.prefer_egl = false
+
+            -- tmux handles scrollback
+            config.scrollback_lines = 0
+
+            config.enable_tab_bar = false
+            config.window_decorations = "RESIZE"
+            config.window_padding = {
+              left = 0,
+              right = 0,
+              top = 0,
+              bottom = 0
+            }
+
+            config.max_fps = 120
+
+            config.audible_bell = "Disabled"
+            config.check_for_updates = false
+
+            return config
+          '';
+      };
     };
   }
 )
