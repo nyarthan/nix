@@ -88,6 +88,7 @@
         pkgs.yazi
         pkgs.mask
         pkgs.delta
+        pkgs.comma
       ];
     };
 }
