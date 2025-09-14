@@ -37,14 +37,7 @@
 
     flake-root.url = "github:srid/flake-root";
 
-    neovim = {
-      url = "github:nyarthan/neovim";
-      inputs = {
-        treefmt-nix.follows = "treefmt-nix";
-        flake-parts.follows = "flake-parts";
-        flake-root.follows = "flake-root";
-      };
-    };
+    neovim.url = "github:nyarthan/neovim";
 
     nix-auto-follow = {
       url = "github:fzakaria/nix-auto-follow";

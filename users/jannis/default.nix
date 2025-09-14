@@ -89,6 +89,10 @@
         pkgs.mask
         pkgs.delta
         pkgs.comma
+        pkgs.localstack
+        pkgs.uv
+        pkgs.awscli2
+        pkgs.jdk24
       ];
     };
 }

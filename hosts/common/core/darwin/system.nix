@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
   system = {
+    activationScripts.extraActivation.text = ''
+      ln -sf "${pkgs.jdk24}/Library/Java/JavaVirtualMachines/zulu-24.jdk" "/Library/Java/JavaVirtualMachines/"
+    '';
     stateVersion = 5;
     checks = {
       verifyBuildUsers = true;
