@@ -2,7 +2,7 @@
   perSystem =
     { pkgs, ... }:
     {
-      devShells.default = pkgs.mkShell {
+      devShells.default = pkgs.mkShellNoCC {
         name = "nix-config";
 
         packages = [
