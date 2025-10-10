@@ -39,7 +39,7 @@ lib'.mkCustomModule [ name ] inputs (
         };
       };
 
-      home.packages = [ pkgs.nodejs_20 ];
+      home.packages = [ pkgs.nodejs_24 ];
     };
   }
 )

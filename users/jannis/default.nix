@@ -70,7 +70,6 @@
         pkgs.vscode
         pkgs.karabiner-driver
         inputs.neovim.packages.aarch64-darwin.default
-        pkgs.gather
         pkgs.figma
         pkgs.cloc
         pkgs.tree
