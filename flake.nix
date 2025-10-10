@@ -31,20 +31,11 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "aarch64-darwin"
-        "x86_64-linux"
+      imports = [
+        ./modules/flake/formatter.nix
+        ./modules/flake/config-shell.nix
+        ./modules/flake/systems.nix
       ];
-
-      perSystem =
-        { pkgs, ... }@args:
-        let
-          specialArgs = args // {
-            inherit inputs pkgs;
-          };
-        in
-        import ./shells/outputs.nix specialArgs
-        // {formatter = pkgs.nixfmt-rfc-style;};
 
       flake =
         let
