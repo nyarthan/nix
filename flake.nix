@@ -20,29 +20,7 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    globignore = {
-      url = "github:nyarthan/globignore";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        treefmt-nix.follows = "treefmt-nix";
-        flake-root.follows = "flake-root";
-      };
-    };
-
-    flake-root.url = "github:srid/flake-root";
-
     neovim.url = "github:nyarthan/neovim";
-
-    nix-auto-follow = {
-      url = "github:fzakaria/nix-auto-follow";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -53,11 +31,6 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.treefmt-nix.flakeModule
-        inputs.flake-root.flakeModule
-      ];
-
       systems = [
         "aarch64-darwin"
         "x86_64-linux"
@@ -71,8 +44,7 @@
           };
         in
         import ./shells/outputs.nix specialArgs
-        // import ./checks/outputs.nix specialArgs
-        // import ./formatter/outptus.nix specialArgs;
+        // {formatter = pkgs.nixfmt-rfc-style;};
 
       flake =
         let
