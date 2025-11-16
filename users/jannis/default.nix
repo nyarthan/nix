@@ -91,7 +91,7 @@
         pkgs.localstack
         pkgs.uv
         pkgs.awscli2
-        pkgs.jdk24
+        pkgs.gather
       ];
     };
 }

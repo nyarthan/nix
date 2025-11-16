@@ -11,4 +11,5 @@
   zen-browser = pkgs.callPackage ./zen-browser.nix { };
   whatsapp = pkgs.callPackage ./whatsapp.nix { };
   protonvpn = pkgs.callPackage ./protonvpn.nix { };
+  gather = pkgs.callPackage ./gather.nix { };
 }
