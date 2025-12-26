@@ -20,7 +20,7 @@
     bash.enable = true;
     sops.enable = true;
     tmux.enable = true;
-    ghostty.enable = true;
+    # ghostty.enable = true;
     i3.enable = true;
 
     fonts = {

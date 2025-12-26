@@ -20,7 +20,7 @@ lib'.mkCustomModule [ name ] inputs (
       };
 
       fontFamily = lib.mkOption {
-        type = lib.types.listOf lib.types.string;
+        type = lib.types.listOf lib.types.str;
         default = config.custom.fonts.defaultFonts.monospace;
         description = "Primary font family";
       };

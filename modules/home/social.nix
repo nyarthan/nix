@@ -12,7 +12,7 @@ lib'.mkCustomModule [ name ] inputs (
 
     config = lib.mkIf cfg.enable {
       home.packages = [
-        pkgs.slack
+        # pkgs.slack
         pkgs.discord
         # pkgs.teams
       ];

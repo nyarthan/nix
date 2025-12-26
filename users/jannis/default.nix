@@ -19,7 +19,7 @@
     };
 
     social.enable = true;
-    ghostty.enable = true;
+    # ghostty.enable = true;
     nushell.enable = true;
 
     fonts = {
@@ -62,7 +62,7 @@
       sessionPath = [ "/Users/jannis/Library/pnpm" ];
       packages = [
         pkgs.qbittorrent
-        pkgs.spotify
+        # pkgs.spotify
         pkgs.tableplus
         pkgs.lazygit
         pkgs.zellij
@@ -79,7 +79,7 @@
         pkgs.hyperfine
         pkgs.karabiner-elements
         pkgs.zen-browser
-        pkgs.whatsapp
+        # pkgs.whatsapp
         # pkgs.protonvpn
         pkgs.nushell
         pkgs.dust
@@ -92,6 +92,8 @@
         pkgs.uv
         pkgs.awscli2
         pkgs.gather
+        pkgs.yt-dlp
+        pkgs.lens
       ];
     };
 }
