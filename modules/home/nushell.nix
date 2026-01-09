@@ -38,6 +38,7 @@ lib'.mkCustomModule [ name ] inputs (
                 "/usr/sbin"
                 "/bin"
                 "/sbin"
+                "/opt/homebrew/bin"
             ]
           '';
       };
