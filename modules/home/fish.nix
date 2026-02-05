@@ -19,7 +19,6 @@ lib'.mkCustomModule [ name ] inputs (
       programs.fish = lib.mkIf cfg.enable {
         enable = true;
         shellInit = ''
-          fish_add_path /opt/homebrew/Cellar/postgresql@16/16.4/bin
           set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
           carapace _carapace | source
         '';

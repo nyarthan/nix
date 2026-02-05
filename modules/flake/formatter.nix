@@ -5,7 +5,7 @@
       formatter = pkgs.writeShellApplication {
         name = "nixfmt-wrapper";
         runtimeInputs = [
-          pkgs.nixfmt-rfc-style
+          pkgs.nixfmt
           pkgs.fd
         ];
         text = ''

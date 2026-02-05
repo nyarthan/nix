@@ -94,6 +94,9 @@
         pkgs.gather
         pkgs.yt-dlp
         pkgs.lens
+        pkgs.brave
+        pkgs.gource
+        pkgs.nh
       ];
     };
 }
