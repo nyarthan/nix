@@ -14,7 +14,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://desktop.figma.com/mac-installer/Figma.dmg";
-    sha256 = "UMD1dDYxUSE6wzj8HS1RRGrvqavSt4i+JCbkqE1Sruc=";
+    sha256 = "bQc9yesDoGTXSLKcpv0mG6zint48Ay6xifMeHfC+wbs=";
   };
 
   nativeBuildInputs = [ undmg ];
