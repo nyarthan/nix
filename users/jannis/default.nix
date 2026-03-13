@@ -88,8 +88,7 @@
         pkgs.mask
         pkgs.delta
         pkgs.comma
-        pkgs.localstack
-        pkgs.uv
+        # pkgs.uv
         pkgs.awscli2
         pkgs.gather
         pkgs.yt-dlp
