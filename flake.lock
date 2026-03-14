@@ -71,11 +71,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1773373499,
-        "narHash": "sha256-UMuhiD46ulPLirKmmYI2KlcCy1geG8Iz6AC9vPXE9sg=",
+        "lastModified": 1773517673,
+        "narHash": "sha256-uip0gJfBwEVgPlV3+iFo0njdxW9Pb7ASqmTl78JqJBw=",
         "owner": "nyarthan",
         "repo": "neovim",
-        "rev": "627fcf9cd4b283c3e2c499ed4a4254781baf0cde",
+        "rev": "31e947909a3dbe5f0ad0adac4b2675aa5f0b8a7f",
         "type": "github"
       },
       "original": {
