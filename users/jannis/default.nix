@@ -94,6 +94,7 @@
         pkgs.yt-dlp
         pkgs.lens
         pkgs.brave
+        pkgs.unstable.claude-code-bin
         pkgs.gource
         pkgs.nh
       ];
